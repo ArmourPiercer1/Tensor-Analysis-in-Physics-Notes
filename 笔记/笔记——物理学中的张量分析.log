@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.10)  21 JAN 2026 19:58
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.10)  21 JAN 2026 20:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -726,7 +726,9 @@ Chapter 3.
 
 [33]
 
-[34] (./笔记——物理学中的张量分析.aux)
+[34]
+
+[35] (./笔记——物理学中的张量分析.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/07/14>
@@ -737,15 +739,15 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.47188pt have occurred.
 
 Package rerunfilecheck Info: File `笔记——物理学中的张量分析.out' has not changed.
-(rerunfilecheck)             Checksum: B03EE246702DF80B0F12F4CBCF37A3C5;7156.
+(rerunfilecheck)             Checksum: 5F73960F51CA361CB2ACD401350CBE6C;7250.
  ) 
 Here is how much of TeX's memory you used:
- 16791 strings out of 473832
- 360373 string characters out of 5733158
- 869338 words of memory out of 5000000
- 39562 multiletter control sequences out of 15000+600000
+ 16793 strings out of 473832
+ 360431 string characters out of 5733158
+ 868441 words of memory out of 5000000
+ 39564 multiletter control sequences out of 15000+600000
  578084 words of font info for 147 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,16n,111p,546b,369s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,16n,111p,546b,475s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 笔记——物理学中的张量分析.pdf (34 pages).
+Output written on 笔记——物理学中的张量分析.pdf (35 pages).

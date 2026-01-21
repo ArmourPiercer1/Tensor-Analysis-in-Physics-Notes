@@ -1422,8 +1422,43 @@ M称为系统的\textbf{不变质量}，它等于在系统质心系中的总能�
         \cdot a^{\beta_1\beta_2...\beta_\mu}_{\alpha_1\alpha_2...\alpha_\nu}(M)
     \end{align}
 
+\subsection{度规张量}
+度规张量即为坐标基矢的点积：
+\begin{align}
+    g_{\alpha\beta}=\boldsymbol{x}_\alpha\cdot \boldsymbol{x}_\beta=\frac{\partial \boldsymbol{x}}{\partial x^\alpha}\cdot\frac{\partial \boldsymbol{x}}{\partial x^\beta}=\sum_{i}\frac{\partial X^i}{\partial x^\alpha}\frac{\partial X^i}{\partial x^\beta}
+\end{align}
+
+矢量点积的公式相应变为
+\begin{align}
+    \boldsymbol{a}\cdot \boldsymbol{b}=\sum_{\alpha\beta}g_{\alpha\beta}a^\alpha b^\beta
+\end{align}
 
 
+同时定义二阶逆变度规张量
+\begin{align}
+    g^{\alpha\beta}=\boldsymbol{x}^\alpha\cdot \boldsymbol{x}^\beta=\sum_i \frac{\partial x^\alpha}{\partial X^i}\frac{\partial x^\beta}{\partial X^i}
+\end{align}
+
+
+协变和逆变度规张量满足
+\begin{align}
+    \sum_\beta g_{\alpha\beta}g^{\beta\gamma}=\delta_\alpha^\gamma
+\end{align}
+
+在正交曲线坐标中，斜边和逆变度规张量都是对角的，满足：
+\begin{align}
+    g_{\alpha\beta}=H_\alpha^2\delta_{\alpha\beta}\\
+    g^{\alpha\beta}=\frac{1}{H_\alpha^2}\delta_{\alpha\beta}
+\end{align}
+
+\begin{itemize}
+    \item 对平直的仿射坐标系：$g_{\alpha\beta}$是常数张量
+    \item 对斜交坐标系：$g_{\alpha\beta}$不是对角的，但：
+    \begin{itemize}
+        \item 总可以通过坐标变换变到坐标基矢为单位矢量的直角坐标系，使$g_{\alpha\beta}$对角
+        \item 同时对角元为1
+    \end{itemize}
+\end{itemize}
 
 
 
