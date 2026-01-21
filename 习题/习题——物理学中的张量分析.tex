@@ -1,0 +1,670 @@
+\documentclass{book}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{ctex}
+\pagestyle{fancy}
+\lhead{\today}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{esint}
+
+\title{《物理学中的张量分析》习题}
+\author{Armour Piercer}
+\date{February 2025}
+
+\begin{document}
+
+\maketitle
+
+\chapter{三维欧式空间中的矢量与张量}
+\section{用矢量方法证明球面三角形中的余弦定理}
+\subsection{定理内容：}
+\begin{align}
+    \cos\alpha=\cos\gamma\cos\beta+\sin\beta\sin\gamma\cos A
+\end{align}
+式中，$\alpha,\,\beta,\,\gamma$分别为大圆弧BC, CA, AB对应的圆心角；A为大圆弧BA与CA所在平面的夹角。
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{./figures/1_1.png}
+    \caption{第一题图}
+\end{figure}
+
+\subsection{证明}
+\begin{align}
+    \cos\alpha =& \mathbf{b\cdot c}\\
+    \cos\gamma =& a \cdot b\\
+    \cos\beta =& a \cdot c\\
+    \cos A =& \frac{a\times b}{|a\times b|}\cdot\frac{a\times c}{|a\times c|}\\
+    =&\frac{a\times b}{\sin\gamma}\cdot\frac{a\times c}{\sin\beta}
+\end{align}
+
+即证明
+\begin{align}
+    b\cdot c=&(a\cdot b)(a\cdot c)+(a\times b)\cdot (a\times c)\\
+    =&(a\cdot b)(a\cdot c)+c\cdot[(a\times b)\times a]\\
+    =&(a\cdot b)(a\cdot c)+c\cdot [b(a\cdot a)-a(a\cdot b)]\\
+    =&(a\cdot b)(a\cdot c)+c\cdot[b-a(a\cdot b)]\\
+    =&(a\cdot b)(a\cdot c)+c\cdot b - (c\cdot a )(a\cdot b)\\
+    =&b\cdot c
+\end{align}
+得证。
+
+\section{基矢性质}
+\subsection{题目内容}
+基矢满足
+\begin{align}
+    \mathbf{e}_i\cdot\mathbf{e}_j=\delta_{ij}
+\end{align}
+试证明
+\begin{align}
+    \mathbf{e_1}=\frac{\mathbf{e}_2\times\mathbf{e}_3}{\mathbf{e}_1\cdot(\mathbf{e}_2\times\mathbf{e}_3)}
+\end{align}
+以及这一公式的轮换对称性。
+\subsection{证明：}
+只要证明等式右侧在$\mathbf{e}_1$分量为1，在$\mathbf{e}_2$和$\mathbf{e}_3$方向上分量为0.
+\begin{align}
+    RHS\cdot\mathbf{e}_1 =& \mathbf{e}_1\cdot\frac{\mathbf{e}_2\times\mathbf{e}_3}{\mathbf{e}_1\cdot(\mathbf{e}_2\times\mathbf{e}_3)}=1\\
+    RHS\cdot\mathbf{e}_2 =& \mathbf{e}_2\cdot\frac{\mathbf{e}_2\times\mathbf{e}_3}{\mathbf{e}_1\cdot(\mathbf{e}_2\times\mathbf{e}_3)}\\
+    =&\frac{\mathbf{e}_2\cdot\mathbf{e}_2\times\mathbf{e}_3}{\mathbf{e}_1\cdot(\mathbf{e}_2\times\mathbf{e}_3)}\\
+    =&\frac{\mathbf{e}_3\cdot\mathbf{e}_2\times\mathbf{e}_2}{\mathbf{e}_1\cdot(\mathbf{e}_2\times\mathbf{e}_3)}\\
+    =&0
+\end{align}
+$\mathbf{e}_3$方向分量同理为0.另外两个式子用类似方法可证，因此本题得证。
+
+\section{矢量分解}
+\subsection{题目}
+试证明：任意矢量$\mathbf{r}$可以用基矢$\mathbf{e}_1,\,\mathbf{e}_2,\,\mathbf{e}_3$写成
+\begin{align}
+    \mathbf{r}=(\mathbf{r}\cdot\mathbf{e}_1)\mathbf{e}_1+(\mathbf{r}\cdot\mathbf{e}_2)\mathbf{e}_2+(\mathbf{r}\cdot\mathbf{e}_3)\mathbf{e}_3
+\end{align}
+
+\section{张量识别定理——缩并形式}
+\subsection{题目}
+若$a_{i_1i_2...i_\mu j_1j_2...j_\nu}$和任意$\nu$阶张量$b_{j_1j_2...j_\nu}$的缩并恒为$\mu$阶张量，试证明：$a_{i_1i_2...i_\mu j_1j_2...j_\nu}$为$\mu+\nu$阶张量。
+\subsection{证明}
+将其缩并记为
+\begin{align}
+    c_{i_1i_2...i_\mu}=\sum_{j_1j_2...j_\nu}a_{i_1i_2...i_\mu j_1j_2...j_\nu}b_{j_1j_2...j_\nu}
+\end{align}
+则在变换：
+\begin{align}
+    \mathbf{e}_{i'}=\sum_i A_{i'i}\mathbf{e_i}
+\end{align}
+进行时，有：
+\begin{align}
+    c_{i_1'i_2'...i_\mu'}=&\sum_{i_1i_2...i_\mu}A_{i_1'i_1}A_{i_2'i_2}...A_{i_\mu'i_\mu}c_{i_1i_2...i_\mu}\\
+    =&\sum_{i_1i_2...i_\mu}A_{i_1'i_1}A_{i_2'i_2}...A_{i_\mu'i_\mu}\left[\sum_{j_1j_2...j_\nu}a_{i_1i_2...i_\mu j_1j_2...j_\nu}b_{j_1j_2...j_\nu}\right]
+\end{align}
+
+同时，有
+\begin{align}
+    c_{i_1'i_2'...i_\mu'}=&\sum_{j_1'j_2'...j_\nu'}a_{i_1'i_2'...i_\mu' j_1'j_2'...j_\nu'}b_{j_1'j_2'...j_\nu'}\\
+    =&\sum_{j_1'j_2'...j_\nu'}a_{i_1'i_2'...i_\mu' j_1'j_2'...j_\nu'}\left(\sum_{j_1j_2...j_\nu}A_{j_1'j_1}A_{j_2'j_2}...A_{j_\nu'j_\nu}b_{j_1j_2...j_\nu}\right)
+\end{align}
+
+由于对任意张量b成立，因此有
+\begin{align}
+    \sum_{i_1i_2...i_\mu}A_{i_1'i_1}A_{i_2'i_2}...A_{i_\mu'i_\mu}a_{i_1i_2...i_\mu j_1j_2...j_\nu}=\sum_{j_1'j_2'...j_\nu'}a_{i_1'i_2'...i_\mu' j_1'j_2'...j_\nu'}A_{j_1'j_1}A_{j_2'j_2}...A_{j_\nu'j_\nu}
+\end{align}
+
+考虑一组数字$k_1,\,k_2,...,k_\nu$，各数字$k_p$在对应角标的$j_p$的取值范围内随机取值，则其构成一组随机下标排列。由于上式中$j_1,\,j_2...\,j_\nu$是自由标，可以对上式两侧同时乘以$A_{k_1'j_1}A_{k_2'j_2}...A_{k_\nu'j_\nu }$，再并对$j_1,\,j_2...\,j_\nu$求和，可得
+\begin{align}
+    &\sum_{i_1i_2...i_\mu}\sum_{j_1j_2...j_\nu}A_{i_1'i_1}A_{i_2'i_2}...A_{i_\mu'i_\mu}A_{k_1'j_1}A_{k_2'j_2}...A_{k_\nu'j_\nu }a_{i_1i_2...i_\mu j_1j_2...j_\nu}\\=&\sum_{j_1'j_2'...j_\nu'}\sum_{j_1j_2...j_\nu}a_{i_1'i_2'...i_\mu' j_1'j_2'...j_\nu'}A_{j_1'j_1}A_{j_2'j_2}...A_{j_\nu'j_\nu}A_{k_1'j_1}A_{k_2'j_2}...A_{k_\nu'j_\nu }
+\end{align}
+
+首先在右侧对j序列分别求和，得到
+\begin{align}
+     &\sum_{i_1i_2...i_\mu}\sum_{j_1j_2...j_\nu}A_{i_1'i_1}A_{i_2'i_2}...A_{i_\mu'i_\mu}A_{k_1'j_1}A_{k_2'j_2}...A_{k_\nu'j_\nu }a_{i_1i_2...i_\mu j_1j_2...j_\nu}\\=&\sum_{j_1'j_2'...j_\nu'}a_{i_1'i_2'...i_\mu' j_1'j_2'...j_\nu'}\delta_{j_1'k_1'}\delta_{j_2'k_2'}...\delta_{j_\nu'k_\nu'}
+\end{align}
+这要求对任意的$k_p$，都要等于对应下标的$j_p$。则有
+\begin{align}
+    &\sum_{i_1i_2...i_\mu}\sum_{j_1j_2...j_\nu}A_{i_1'i_1}A_{i_2'i_2}...A_{i_\mu'i_\mu}A_{k_1'j_1}A_{k_2'j_2}...A_{k_\nu'j_\nu }a_{i_1i_2...i_\mu j_1j_2...j_\nu}\\=&a_{i_1'i_2'...i_\mu' k_1'k_2'...k_\nu'}
+\end{align}
+由于$k'$只是一组独立下标序列，与实际的变换无关，将原式中的$k'$项全部改写成$j'$项不会影响结果。这就能得到我们熟悉的张量表达式，
+\begin{align}
+    a_{i_1'i_2'...i_\mu' j_1'j_2'...j_\nu'}=&\sum_{i_1i_2...i_\mu}\sum_{j_1j_2...j_\nu}A_{i_1'i_1}A_{i_2'i_2}...A_{i_\mu'i_\mu}A_{j_1'j_1}A_{j_2'j_2}...A_{j_\nu'j_\nu }a_{i_1i_2...i_\mu j_1j_2...j_\nu}
+\end{align}
+
+\section{张量识别定理——张量积形式}
+\subsection{题目}
+若$a_{i_1i_2...i_\mu}$和任意$\nu$阶张量$b_{j_1j_2...j_\nu}$的张量积为$\mu+\nu$阶张量，则$a_{i_1i_2...i_\mu}$为$\mu$阶张量。
+\subsection{证明}
+将a和b的张量积记为
+\begin{align}
+    c_{i_1i_2...i_\mu j_1j_2...j_\nu}=a_{i_1i_2...i_\mu}b_{j_1j_2...j_\nu}
+\end{align}
+
+当坐标变换
+\begin{align}
+    \mathbf{e}_{i'}=\sum_i A_{i'i}\mathbf{e_i}
+\end{align}
+进行时，有：
+
+\begin{align}
+    c_{i_1'i_2'...i_\mu' j_1'j_2'...j_\nu'}
+    =&a_{i_1'i_2'...i_\mu'}b_{j_1'j_2'...j_\nu'}\\
+    =& a_{i_1'i_2'...i_\mu'}\sum_{j_1j_2...j_\nu} A_{j_1'j_1}A_{j_2'j_2}...A_{j_\nu'j_\nu}b_{j_1j_2...j_\nu}
+\end{align}
+
+同时，
+\begin{align}
+    c_{i_1'i_2'...i_\mu' j_1'j_2'...j_\nu'}
+    =&\sum_{i_1i_2...i_\nu}\sum_{j_1j_2...j_\nu} A_{i_1'i_2}A_{i_2'i_2}...A_{i_\nu'i_\nu}A_{j_1'j_1}A_{j_2'j_2}...A_{j_\nu'j_\nu}c_{i_1i_2...i_\mu j_1j_2...j_\nu}\\
+    =&\sum_{i_1i_2...i_\nu}\sum_{j_1j_2...j_\nu}A_{i_1'i_2}A_{i_2'i_2}...A_{i_\nu'i_\nu}A_{j_1'j_1}A_{j_2'j_2}...A_{j_\nu'j_\nu}a_{i_1i_2...i_\mu}b_{j_1j_2...j_\nu}
+\end{align}
+
+要对任意的张量b成立，则有
+\begin{align}
+    a_{i_1'i_2'...i_\mu'} A_{j_1'j_1}A_{j_2'j_2}...A_{j_\nu'j_\nu}=\sum_{i_1i_2...i_\nu}A_{i_1'i_2}A_{i_2'i_2}...A_{i_\nu'i_\nu}A_{j_1'j_1}A_{j_2'j_2}...A_{j_\nu'j_\nu}a_{i_1i_2...i_\mu}
+\end{align}
+
+由于右侧没有对下标j进行求和，可以提取公因式并约去等式两侧的$A_{j_m'j_m}$项。因此，
+\begin{align}
+    a_{i_1'i_2'...i_\mu'}=\sum_{i_1i_2...i_\nu}A_{i_1'i_2}A_{i_2'i_2}...A_{i_\nu'i_\nu}a_{i_1i_2...i_\mu}
+\end{align}
+即证明了$a_{i_1i_2...i_\mu}$也是按照张量的形式变化的，它也是一个张量。
+
+\section{张量识别定理的应用}
+\subsection{题目内容}
+试根据张量识别定理证明：$\delta_{ij}$是二阶张量，$\varepsilon_{ijk}$为三阶张量。
+\subsection{证明}
+考虑一个一阶张量$a_i$，将$\delta_{ij}$与$a_i$进行缩并。有：
+\begin{align}
+    b_j=\sum_ia_i\delta_{ij}=a_j
+\end{align}
+显然，$b_j$也是一个张量，且它与$a_j$相等。因此，$\delta_{ij}$是二阶张量。
+
+同样，将$\varepsilon_{ijk}$与$\delta_{ij}$缩并，
+\begin{align}
+    \sum_{ij}\varepsilon_{ijk}\delta_{ij}=\sum_{i}\varepsilon_{iik}=0_k
+\end{align}
+即缩并的结果是一个一阶零张量。因此，$\varepsilon_{ijk}$是一个三阶张量。
+
+\section{证明矢量等式}
+\subsection{题目}
+利用克罗内克符号$\delta_{ij}$和三阶完全反对称张量$\varepsilon_{ijk}$证明：
+\begin{align}
+    \mathbf{a}\times (\mathbf{b}\times\mathbf{c})=&\mathbf{b}(\mathbf{a}\cdot\mathbf{c})-\mathbf{c}(\mathbf{a}\cdot\mathbf{b})\\
+    (\mathbf{a}\times\mathbf{b})\times(\mathbf{c}\times\mathbf{d})=&\mathbf{b}[\mathbf{a}\cdot(\mathbf{c}\times\mathbf{d})]-\mathbf{a}[\mathbf{b}\cdot(\mathbf{c}\times\mathbf{d})]\\
+    =&\mathbf{c}[\mathbf{a}\cdot(\mathbf{b}\times\mathbf{d})]-\mathbf{d}[\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})]
+\end{align}
+\subsection{证明}
+\begin{align}
+    [\mathbf{a}\times (\mathbf{b}\times\mathbf{c})]_k=&\sum_{ij}\varepsilon_{ijk}a_i(\mathbf{b}\times\mathbf{c})_j\\
+    =&\sum_{ij}\varepsilon_{ijk}a_i\sum_{lm}\varepsilon_{lmj}b_lc_m\\
+    =&-\sum_{ilm}\sum_j\varepsilon_{ikj}\varepsilon_{jlm}a_ib_lc_m\\
+    =&-\sum_{ilm}(\delta_{il}\delta_{km}-\delta_{im}\delta_{kl})a_ib_lc_m\\
+    =&\sum_ia_ib_ic_k-\sum_ma_lb_kc_m\\
+    =&b_k\sum_{i}a_ic_i-c_k\sum_ma_mb_m\\
+    =&[\mathbf{b}(\mathbf{a}\cdot\mathbf{c})-\mathbf{c}(\mathbf{a}\cdot\mathbf{b})]_k
+\end{align}
+第一式得证。
+
+\begin{align}           [(\mathbf{a}\times\mathbf{b})\times(\mathbf{c}\times\mathbf{d})]_k=&\sum_{ij}\varepsilon_{ijk}(\mathbf{a}\times\mathbf{b})_i(\mathbf{c}\times\mathbf{d})_j\\
+    =&\sum_{ij}\varepsilon_{ijk}\sum_{lm}\varepsilon_{lmi}a_lb_m\sum_{np}\varepsilon_{npj}c_nd_p\\
+    =&\sum_{jlmnp}\sum_i\varepsilon_{lmi}\varepsilon_{ijk}\varepsilon_{npj}a_lb_mc_nd_p\\
+    =&\sum_{jlmnp}(\delta_{lj}\delta_{mk}-\delta_{lk}\delta_{mj})\varepsilon_{npj}a_lb_mc_nd_p\\
+    =&\sum_{l}\varepsilon_{npl}a_lb_kc_nd_p-\sum_{jrs}\varepsilon_{rsj}a_kb_jc_rd_s\\
+    =&b_k\sum_{lnp}a_l\sum_{np}\varepsilon_{npl}c_nd_p-a_k\sum_jb_j\sum_{rs}\varepsilon_{rsj}c_rd_s\\
+    =&b_k[\mathbf{a}\cdot(\mathbf{c}\times\mathbf{d})]-a_k[\mathbf{b}\cdot(\mathbf{c}\times\mathbf{d})]\\
+    =&\{\mathbf{b}[\mathbf{a}\cdot(\mathbf{c}\times\mathbf{d})]-\mathbf{a}[\mathbf{b}\cdot(\mathbf{c}\times\mathbf{d})]\}_k
+\end{align}
+
+同理，选择另外两个三阶完全反对称张量$\varepsilon_{ijk}$和$\varepsilon_{npj}$缩并即可得到第二式的第二个等号：
+\begin{align}
+    [(\mathbf{a}\times\mathbf{b})\times(\mathbf{c}\times\mathbf{d})]_k=&\sum_{ij}\varepsilon_{ijk}(\mathbf{a}\times\mathbf{b})_i(\mathbf{c}\times\mathbf{d})_j\\
+    =&\sum_{ij}\varepsilon_{ijk}\sum_{lm}\varepsilon_{lmi}a_lb_m\sum_{np}\varepsilon_{npj}c_nd_p\\
+    =&-\sum_{ilmnp}\sum_j\varepsilon_{ikj}\varepsilon_{jnp}\varepsilon_{lmi}a_lb_mc_nd_p\\
+    =&\sum_{ilmnp}(\delta_{ip}\delta_{kn}-\delta_{in}\delta_{kp})\varepsilon_{lmi}a_lb_mc_nd_p\\
+    =&\sum_{ilm}\varepsilon_{lmi}a_lb_mc_kd_i-\sum_{rsn}\varepsilon_{rsn}a_rb_sc_nd_k\\
+    =&c_k\sum_id_i\sum_{lm}\varepsilon_{lmi}a_lb_m-d_k\sum_nc_n\sum_{rs}\varepsilon_{rsn}a_rb_s\\
+    =&\{\mathbf{c}[\mathbf{a}\cdot(\mathbf{b}\times\mathbf{d})]-\mathbf{d}[\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})]\}_k
+\end{align}
+于是第二个等式得证。
+
+\section{梯度关系}
+\subsection{题目}
+试证明：
+\begin{align}
+    \mathrm{div}(\phi\delta_{ij})=\mathbf{grad}\phi\\
+    \mathrm{div}(\phi p_{ij})=\phi\mathrm{div}\,\overset{\twoheadrightarrow}{p}+\mathbf{grad}\phi\cdot\overset{\twoheadrightarrow}{p}
+\end{align}
+其中，$\overset{\twoheadrightarrow}{p}$是二阶张量$p_{ij}$的整体记号。
+
+\subsection{证明}
+对第一个微分式，有展开形式：
+\begin{align}
+    [\mathrm{div}(\phi\delta_{ij})]_k=&\sum_{li}\delta_{li}\frac{\partial}{\partial x_l}(\phi\delta_{ik})\\
+    =&\sum_i\frac{\partial}{\partial x_i}(\phi\delta_{ik})\\
+    =&\sum_i[\phi\frac{\partial \delta_{ik}}{\partial x_i}+\delta_{ik}\frac{\partial \phi}{\partial x_i}]\\
+    =&\frac{\partial \phi}{\partial x_k}\\
+    =&[\mathbf{grad}\,\phi]_k
+\end{align}
+第一个微分式得证。
+
+\begin{align}
+    [\mathrm{div}(\phi p_{ij})]_k=&\sum_{li}\delta_{li}\frac{\partial }{\partial x_l}(\phi p_{ik})\\
+    =&\sum_i\frac{\partial }{\partial x_i}(\phi p_{ik})\\
+    =&\sum_i[\phi \frac{\partial p_{ik}}{\partial x_i}+p_{ik}\frac{\partial \phi}{\partial x_i}]\\
+    =&\phi (\mathrm{div}\,\overset{\twoheadrightarrow}{p})_k+(\mathbf{grad}\phi\cdot\overset{\twoheadrightarrow}{p})_k
+\end{align}
+第二个微分式得证。
+
+\section{对称-反对称分解}
+\subsection{题目}
+将并矢张量$\mathbf{ab}$分解为对称部分和反对称部分，试证明：与反对称部分相当的矢量为$\boldsymbol{\omega}=\frac{1}{2}\mathbf{b}\times\mathbf{a}$。
+\subsection{证明}
+反对称部分为 
+\begin{align}
+    (ab)_{[ij]}=&\frac{1}{2}[(ab)_{ij}-(ab)_{ji}]\\
+    =&\frac{1}{2}[a_ib_j-a_jb_i]\\
+    =&\frac{1}{2}(\mathbf{a}\times\mathbf{b})_{k}
+\end{align}
+
+
+
+由于是反对称的，所有的$(ab)_{[ii]}=0$。因此，有
+\begin{align}
+    \mathbf{ab}=
+    \begin{bmatrix}
+        0  & \omega_3 & -\omega_2\\
+        -\omega_3 & 0  & \omega_1\\
+        \omega_2 & -\omega_1 & 0
+    \end{bmatrix}
+\end{align}
+
+式中，$\boldsymbol{\omega}=(\omega_1,\,\omega_2,\,\omega_3)=\frac{1}{2}\mathbf{a}\times \mathbf{b}$。
+
+\section{导数张量的分解}\label{1.10}
+\subsection{题目}
+将张量$\frac{\partial a_i}{\partial x_j}$分解为对称部分$s$和反对称部分$w$，试证明：
+
+(1)\begin{align}
+    w=\frac{1}{2}\mathbf{rot}\,\mathbf{a}
+\end{align}
+
+(2)\begin{align}
+    \mathrm{d}\mathbf{a}=s\mathrm{d}\mathbf{x}+\frac{1}{2}\mathbf{rot}\,\mathbf{a}\times\mathrm{d}\mathbf{x}
+\end{align}
+
+\subsection{证明}
+由于反对称二阶张量与一阶赝矢量是一一对应的，可以说：
+\begin{align}
+    w_k=(w)_{ij}
+\end{align}
+\begin{align}
+    w_k=(w)_{ij}=\frac{1}{2}(\frac{\partial a_i}{\partial x_j}-\frac{\partial a_j}{\partial x_i})=(\frac{1}{2}\mathbf{rot}\,\mathbf{a})_k
+\end{align}
+第一式得证。
+
+\begin{align}
+    s_{ij}=&\frac{1}{2}(\frac{\partial a_i}{\partial x_j}+\frac{\partial a_j}{\partial x_i})
+\end{align}
+故
+\begin{align}
+    (\mathrm{d}\mathbf{a})_{i}=\sum_j\frac{\partial a_i}{\partial x_j}\mathrm{d}x_j
+\end{align}
+
+\begin{align}
+    (s\mathrm{d}\mathbf{x})_{i}=&\sum_js_{ij}\mathrm{d}x_j\\
+    =&\frac{1}{2}\sum_j(\frac{\partial a_i}{\partial x_j}+\frac{\partial a_j}{\partial x_i})\mathrm{d}x_j\\
+    =&\frac{1}{2}\sum_j\frac{\partial a_i}{\partial x_j}\mathrm{d}x_j+\frac{1}{2}\sum_j\frac{\partial a_j}{\partial x_i}\mathrm{d}x_j\\
+    =&\frac{1}{2}(\mathrm{d}\mathbf{a})_i+\frac{1}{2}\sum_j\frac{\partial a_j}{\partial x_i}\mathrm{d}x_j
+\end{align}
+
+\begin{align}
+    (\frac{1}{2}\mathbf{rot}\,\mathbf{a}\times\mathrm{d}\mathbf{x})_i=&\frac{1}{2}\sum_{jk}\varepsilon_{jki}(\mathbf{rot}\,\mathbf{a})_{j}(\mathrm{d}\mathbf{x})_k\\
+    =&\frac{1}{2}\sum_{jk}\varepsilon_{jki}\sum_{lm}\varepsilon_{jlm}\frac{\partial a_m}{\partial x_l}\mathrm{d}x_k\\
+    =&\frac{1}{2}\sum_{klm}\sum_j\varepsilon_{kij}\varepsilon_{jlm}\frac{\partial a_m}{\partial x_l}\mathrm{d}x_k\\
+    =&\frac{1}{2}\sum_{klm}(\delta_{kl}\delta_{im}-\delta_{km}\delta_{il})\frac{\partial a_m}{\partial x_l}\mathrm{d}x_k\\
+    =&\frac{1}{2}\sum_k\frac{\partial a_i}{\partial x_k}\mathrm{d}x_k-\frac{1}{2}\sum_m\frac{\partial a_m}{\partial x_i}\mathrm{d}x_m\\
+    =&\frac{1}{2}(\mathrm{d}\mathbf{a})_i-\frac{1}{2}\sum_j\frac{\partial a_j}{\partial x_i}\mathrm{d}x_j
+\end{align}
+
+以上两式求和即可令第二式得证。
+
+\section{亥姆霍兹速度分解定律}
+\subsection{题目}
+由于流体运动时，除平动外还有形变运动，故某一点邻域内流体微团的运动速度可写为
+\begin{align}
+    v_i=v_{0i}+\frac{\partial v_i}{\partial x_j}\delta x_j
+\end{align}
+若将二阶张量$\frac{\partial v_i}{\partial x_j}$分解为反对称张量$a_{ij}$和对称张量$s_{ij}$，则得到亥姆霍兹速度分解定律
+\begin{align}
+    \mathbf{v}=\mathbf{v}_0+\frac{1}{2}\mathbf{rot}\,\mathbf{v}\times\delta \mathbf{x}+\mathbf{grad}\,\phi
+\end{align}
+写出反对称张量$a_{ij}$，对称张量$s_{ij}$，并求出$\phi$。
+\subsection{解}
+
+\begin{align}
+    \frac{\partial v_i}{\partial x_j}=&\frac{\partial }{\partial x_j}(v_{0i}+\frac{\partial v_i}{\partial x_j}\delta x_j)\\
+    =&\frac{\partial v_{0i}}{\partial x_j}+\frac{\partial^2 v_i}{\partial x_j^2}\delta x_j
+\end{align}
+反对称张量：
+\begin{align}
+    a_{ij}=&\frac{1}{2}(\frac{\partial v_i}{\partial x_j}-\frac{\partial v_j}{\partial x_i})\\
+    =&\frac{1}{2}(\frac{\partial v_{0i}}{\partial x_j}-\frac{\partial v_{0j}}{\partial x_i}+\frac{\partial^2 v_i}{\partial x_j^2}\delta x_j-\frac{\partial^2 v_j}{\partial x_i^2}\delta x_i)
+\end{align}
+
+对称张量：
+\begin{align}
+    s_{ij}=&\frac{1}{2}(\frac{\partial v_i}{\partial x_j}+\frac{\partial v_j}{\partial x_i})\\
+    =&\frac{1}{2}(\frac{\partial v_{0i}}{\partial x_j}+\frac{\partial v_{0j}}{\partial x_i}+\frac{\partial^2 v_i}{\partial x_j^2}\delta x_j+\frac{\partial^2 v_j}{\partial x_i^2}\delta x_i)
+\end{align}
+
+求标量函数：
+
+容易看出，这一分解实际上就是
+\begin{align}
+    \mathbf{v}=\mathbf{v_0}+\left(\frac{\partial \mathbf{v}}{\partial \mathbf{x}}\right)\delta\mathbf{x}
+\end{align}
+
+与\ref{1.10}同理可得，
+\begin{align}
+    \left(\frac{\partial \mathbf{v}}{\partial \mathbf{x}}\right)\delta\mathbf{x}=\frac{1}{2}\mathbf{rot}\,\mathbf{v}\times\delta \mathbf{x}+\overset{\twoheadrightarrow}{s}\cdot\delta\mathbf{x}
+\end{align}
+
+只要展开$\overset{\twoheadrightarrow}{s}\cdot\delta\mathbf{x}$，并据此找到对应的$\phi$即可。
+\begin{align}
+    \frac{\partial \phi}{\partial x_i}=&(\overset{\twoheadrightarrow}{s}\cdot\delta\mathbf{x})_i\\
+    =&\frac{1}{2}\sum_j(\frac{\partial v_{0i}}{\partial x_j}+\frac{\partial v_{0j}}{\partial x_i}+\frac{\partial^2 v_i}{\partial x_j^2}\delta x_j+\frac{\partial^2 v_j}{\partial x_i^2}\delta x_i)\delta x_j
+\end{align}
+略去所有二阶变分，可得
+\begin{align}
+    \frac{\partial \phi}{\partial x_i}=&(\overset{\twoheadrightarrow}{s}\cdot\delta\mathbf{x})_i\\
+    =&\frac{1}{2}\sum_j(\frac{\partial v_{0i}}{\partial x_j}\delta x_j+\frac{\partial v_{0j}}{\partial x_i}\delta x_j)
+\end{align}
+
+可以看出
+\begin{align}
+    \phi = \frac{1}{2}\sum_{ij}x_i\frac{\partial v_{0i}}{\partial x_j}\delta x_j + \frac{1}{2}\sum_{lm}v_{0l}\delta x_m
+\end{align}
+
+\section{偏应力张量}
+\subsection{题目}
+流体应力张量$\overset{\twoheadrightarrow}{p}$可分解为$p_{ij}=-P\delta_{ij}+\tau_{ij}$，其中，$\overset{\twoheadrightarrow}{p}$是二阶张量$p_{ij}$的整体符号，$P$为流体压力函数，$\tau_{ij}$为偏应力张量，它是速度梯度张量各分量的线性齐次函数，即
+\begin{align}
+    \tau_{ij}=c_{ijkl}\frac{\partial u_k}{\partial x_l}
+\end{align}
+试推导：
+\begin{align}
+    \tau_{ij}=2\mu\left(  s_{ij}-\frac{1}{2}s_{kk}\delta_{ij} \right)+\mu's_{kk}\delta_{ij}
+\end{align}
+式中，$s_{ij}$为张量$\frac{\partial u_i}{\partial x_j}$的对称部分；$\mu,\,\mu'$为常数，分别是动力学黏性系数和膨胀黏性系数。
+
+\subsection{证明}
+将四阶各向同性张量写成$\delta$形式：
+\begin{align}
+    c_{ijkl}=\nu\delta_{ij}\delta_{kl}+\mu (\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})
+\end{align}
+
+将$\partial_ju_i$的对称分量记为$s_{ij}$，反对称分量记为$a_{ij}$，则有
+\begin{align}
+    \tau_{ij}=&c_{ijkl}\partial_lu_k\\
+    =&[\nu\delta_{ij}\delta_{kl}+\mu (\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})]\partial_lu_k\\
+    =&\nu \delta_{ij}\partial_ku_k+\mu (\partial_ju_i+\partial_iu_j)\\
+    =&\nu\delta_{ij}(s_{kk}+a_{kk})+\mu (s_{ij}+a_{ij}+s_{ji}+a_{ji})
+\end{align}
+反对称分量的对角元均为0，且有$a_{ij}+a_{ji}=0$。则有
+\begin{align}
+    \tau_{ij}=\nu\delta_{ij}s_{kk}+2\mu s_{ij}
+\end{align}
+令$\nu=\mu'-\mu$，则
+\begin{align}
+    \tau_{ij}=&2\mu s_{ij}+\mu\delta_{ij}s_{kk}-\mu'\delta_{ij}s_{kk}\\
+    =&2\mu\left(  s_{ij}-\frac{1}{2}s_{kk}\delta_{ij} \right)+\mu's_{kk}\delta_{ij}
+\end{align}
+得证。
+
+\section{证明张量恒等式}
+\subsection{题目}
+试证明：
+\begin{align}
+    (\nabla \cdot\mathbf{E})\mathbf{E}+(\nabla\times\mathbf{E})\times\mathbf{E}=\nabla\cdot(\mathbf{E}\mathbf{E}-\frac{1}{2}\overset{\twoheadrightarrow}{e}\mathbf{E}^2)
+\end{align}
+\subsection{证明}
+\begin{align}
+    (LHS)_i=&(\partial_pE_p)E_i+\varepsilon_{ijk}\varepsilon_{jlm}E_k(\partial_lE_m)\\
+    =&(\partial_pE_p)E_i-(\delta_{il}\delta_{km}-\delta_{im}\delta_{kl})E_k(\partial_lE_m)\\
+    =&(\partial_pE_p)E_i-E_k(\partial_iE_k)+E_l(\partial_lE_i)
+\end{align}
+
+\begin{align}
+    (RHS)_{i}=&(\nabla\cdot(\mathbf{E}\mathbf{E}))_i-[\nabla(\frac{1}{2}\overset{\twoheadrightarrow}{e}\mathbf{E}^2)]_i\\
+    =& \partial_p(\mathbf{E}\mathbf{E})_{pi}-\frac{1}{2}\partial_i(\overset{\twoheadrightarrow}{e}\mathbf{E}^2)_{i}\\
+    =&\partial_p(E_pE_i)-\frac{1}{2}\partial_ie_{ij}\mathbf{E}^2_{ji}\\
+    =&E_i\partial_pE_p+E_p\partial_pE_i-\frac{1}{2}\partial_j\delta_{ij}E_iE_j\\
+    =&E_i\partial_pE_p+E_p\partial_pE_i-\frac{1}{2}\partial_jE_i^2\\
+    =&E_i\partial_pE_p+E_p\partial_pE_i-E_i\partial_jE_i
+\end{align}
+得证。
+
+\chapter{仿射空间与伪欧氏空间中的张量}
+
+\section{叉乘线性相关性}
+\subsection{题目}
+若$\mathbf{a}\times \mathbf{b}=0$，求证$\mathbf{a},\,\mathbf{b}$线性相关。
+
+\subsection{证明}
+首先将$\mathbf{a}\times\mathbf{b}=0$展开为显式表达：
+\begin{align}
+    a_1b_2-a_2b_1=0\\
+    a_1b_3-a_3b_1=0\\
+    a_2b_3-a_3b_2=0
+\end{align}
+
+首先考虑某个向量中有分量为0的情况。由对称性，不妨假设向量$\mathbf{a}$中$a_1=0$，其他元素不为0，则有
+\begin{align}
+    a_2b_1=a_3b_1=0
+\end{align}
+故必然要求$b_1=0$。因此，各向量的0分量对应，只需要考虑向量的非0分量即可。
+
+不妨设$a_i,\,a_j,\,b_i,\,b_j$都是非0的，则由
+\begin{align}
+    a_ib_j-a_jb_i=0
+\end{align}
+可得
+\begin{align}
+    \frac{a_i}{b_i}=\frac{a_j}{b_j}
+\end{align}
+
+故对于任意i分量，总是有
+\begin{align}
+    a_i=kb_i
+\end{align}
+即有
+\begin{align}
+    \mathbf{a}=k\mathbf{b}
+\end{align}
+故$\mathbf{a}$和$\mathbf{b}$线性相关。
+
+\section{标量积与线性相关性}
+\subsection{题目}
+若$(\mathbf{a}\times\mathbf{b})\cdot\mathbf{c}=0$，则$\mathbf{a},\,\mathbf{b},\,\mathbf{c}$线性相关。
+\subsection{证明}
+混合积为0即
+\begin{align}
+    det(P)=\begin{vmatrix}
+        c_1 & c_2 & c_3\\
+        a_1 & a_2 & a_3\\
+        b_1 & b_2 & b_3
+    \end{vmatrix}=0
+\end{align}
+行列式为0表明矩阵P不满秩，故必存在一参数组合$(m,\,n)$使得
+\begin{align}
+    \mathbf{a}+m\mathbf{b}+n\mathbf{c}=0
+\end{align}
+即$\mathbf{a},\,\mathbf{b},\,\mathbf{c}$线性相关。
+
+\section{四阶完全反对称张量的缩并}
+\subsection{题目}
+计算四维时空中$e_{\mu\nu\rho\sigma}e^{\mu\nu\rho\sigma}$的值。
+\subsection{解}
+有任意两个角标相同时，$e_{\mu\nu\rho\sigma}=e^{\mu\nu\rho\sigma}=0$.故只需要计算所有$(0,1,2,3)$的排列即可，共24个。
+
+先考虑排列$0123$，有
+\begin{align}
+    &e_{0123}=-1\\
+    &e^{0123}=1
+\end{align}
+乘积为-1.
+
+对任意排列，若它是一个偶排列，则两个量都不变号，乘积为-1；若它是一个偶排列，则两个量都变号，乘积也是-1.故所有的24个排列都是-1，四个指标缩并结果为-24.即
+\begin{align}
+    e_{\mu\nu\rho\sigma}e^{\mu\nu\rho\sigma}=-24
+\end{align}
+
+\section{四阶完全反对称张量的关系式}
+\subsection{题目}
+证明下列关系式：\footnote{第一式原题为$e_{\alpha\beta\gamma\delta}e^{\alpha\beta\delta\rho}=-6\delta_\sigma^\rho$，似笔误。}
+\begin{align}
+    &e_{\alpha\beta\gamma\sigma}e^{\alpha\beta\gamma\rho}=-6\delta_\sigma^\rho\\
+    &e_{\alpha\beta\gamma\delta}e^{\alpha\beta\mu\nu}=-2(\delta_\gamma^\mu\delta_\delta^\nu-\delta_\gamma^\nu\delta_\delta^\mu)\\
+    &e_{\alpha\beta\gamma\delta}e^{\alpha\mu\nu\sigma}=-(\delta_\beta^\mu\delta_\gamma^\nu\delta_\delta^\sigma
+    -\delta_\beta^\mu\delta_\gamma^\sigma\delta_\delta^\nu
+    +\delta_\beta^\nu\delta_\gamma^\sigma\delta_\delta^\mu
+    -\delta_\beta^\nu\delta_\gamma^\mu\delta_\delta^\sigma
+    +\delta_\beta^\sigma\delta_\gamma^\mu\delta_\delta^\nu
+    -\delta_\beta^\sigma\delta_\gamma^\nu\delta_\delta^\mu)
+\end{align}
+
+\subsection{证明}
+(1)$e_{\alpha\beta\gamma\sigma}e^{\alpha\beta\gamma\rho}=-6\delta_\sigma^\rho$
+
+式中共出现$\alpha,\beta,\gamma,\sigma,\rho$共五个指标，而一共只有4个维度参量可供分配，故必然有两个指标相等。
+
+当$\sigma\neq\rho$时，必有$\sigma,\rho$中的一者与$\alpha,\beta,\gamma$中的一个相等，则对应的张量分量为0.
+
+当$\sigma=\rho$时，二者固定为一个确定的已知指标，$\alpha\beta\gamma$三个自由标占据其他三个位置，在求和时共有6个排列。上一题已经证明过，对任意排列，$e_{\mu\nu\rho\sigma}e^{\mu\nu\rho\sigma}=-1$，故求和结果为-6.综上所述，
+\begin{align}
+    e_{\alpha\beta\gamma\sigma}e^{\alpha\beta\gamma\rho}=\left\{
+    \begin{aligned}
+        0, \,\,\sigma\neq\rho\\
+        -6,\,\,\sigma=\rho
+    \end{aligned}
+    \right.
+    =-6\delta_\sigma^\rho
+\end{align}
+
+(2)$e_{\alpha\beta\gamma\delta}e^{\alpha\beta\mu\nu}=-2(\delta_\gamma^\mu\delta_\delta^\nu-\delta_\gamma^\nu\delta_\delta^\mu)$
+
+系数-2来源于$\alpha\beta$的排列。
+
+当$\{\gamma,\,\delta\}\neq\{\nu,\,\mu\}$时，必有四个指标之一与$\alpha$或者$\beta$相同，故一个分量为0，乘积也为0；当且仅当 $\{\gamma,\,\delta\}=\{\nu,\,\mu\}$，且任意指标均不等于$\alpha,\,\beta$时，乘积才不为0. 因此，
+\begin{align}
+    e_{\alpha\beta\gamma\delta}e^{\alpha\beta\mu\nu}&=\left\{\begin{aligned}
+        &0,\,\{\gamma,\,\delta\}\neq\{\nu,\,\mu\}\\
+        &2\times(-1), \,\gamma=\mu,\,\delta=\nu\\
+        &2\times1,\,\gamma=\nu,\,\delta=\mu
+        \end{aligned}\right.\\
+        &=-2(\delta_\gamma^\mu\delta_\delta^\nu-\delta_\gamma^\nu\delta_\delta^\mu)
+\end{align}
+
+(3) $e_{\alpha\beta\gamma\delta}e^{\alpha\mu\nu\sigma}=-(\delta_\beta^\mu\delta_\gamma^\nu\delta_\delta^\sigma
+    -\delta_\beta^\mu\delta_\gamma^\sigma\delta_\delta^\nu
+    +\delta_\beta^\nu\delta_\gamma^\sigma\delta_\delta^\mu
+    -\delta_\beta^\nu\delta_\gamma^\mu\delta_\delta^\sigma
+    +\delta_\beta^\sigma\delta_\gamma^\mu\delta_\delta^\nu
+    -\delta_\beta^\sigma\delta_\gamma^\nu\delta_\delta^\mu)$
+
+    同样的方法可以证明。
+
+\section{从洛伦兹变换式}
+\subsection{题目}
+从洛伦兹变换式
+\begin{align}
+    \left\{\begin{aligned}
+        x'=(\cos\theta) x+(-i\sin\theta)ct\\
+        ct'=(-i\sin\theta)x+(\cos\theta)ct
+    \end{aligned}\right.
+\end{align}
+出发，证明快度变换式
+\begin{align}
+    y=y_1+y_2
+\end{align}
+\subsection{证明}
+考虑坐标系$K,K'$，$K$相对$K'$有速度$v_0$,以及$K(x,ct)$系中速度$v$的一个物体。当$t=0$时，$K,K'$的原点以及物体的位置重合。
+
+从快度定义，有$K$系相对$K'$系的快度
+\begin{align}
+    y_0=\mathrm{arctanh}\,\beta_0
+\end{align}
+物体相对$K$系的快度
+\begin{align}
+    y_1=\mathrm{arctanh}\,\beta
+\end{align}
+
+当$K$系中经过t时间后，物体在$K$系中位于$(\beta ct,\,ct)$，在$K'$系中时空坐标
+\begin{align}
+    x'=(\cos\theta)\beta ct+(-i\sin\theta)ct\\
+    ct'=(-i\sin\theta)\beta ct+(\cos\theta)ct
+\end{align}
+在$K$系中速度为
+\begin{align}
+    \beta'=&\frac{x'}{ct'}=\frac{(\cos\theta)\beta ct+(-i\sin\theta)ct}{(-i\sin\theta)\beta ct+(\cos\theta)ct}\\
+    =&\cfrac{\beta+\beta_0}{1+\beta\beta_0}
+\end{align}
+相应快度
+\begin{align}
+    y'=&\mathrm{arctanh}\left(\cfrac{\beta+\beta_0}{1+\beta\beta_0}\right)\\
+    =&\mathrm{arctanh}\left(\cfrac{\tanh y_1+\tanh y_2}{1+\tanh y_1\tanh y_2}\right)\\
+    =&\mathrm{arctanh}[\tanh(y_1+y_2)]\\
+    =&y_1+y_2
+\end{align}
+
+\section{洛伦兹变换的雅可比}
+\subsection{题目}
+证明洛伦兹变换式
+\begin{align}
+    x'=\frac{x-\beta ct}{\sqrt{1-\beta^2}}\\
+    t'=\frac{t-\cfrac{\beta}{c}x}{\sqrt{1-\beta^2}}
+\end{align}
+的雅可比行列式等于1.
+
+\subsection{证明}
+\begin{align}
+    \frac{\partial x'}{\partial x}=\frac{1}{\sqrt{1-\beta^2}}\\
+    \frac{\partial x'}{\partial t}=\frac{-\beta c}{\sqrt{1-\beta^2}}\\
+    \frac{\partial t'}{\partial x}=\frac{-\beta /c}{\sqrt{1-\beta^2}}\\
+    \frac{\partial t'}{\partial t}=\frac{1}{\sqrt{1-\beta^2}}
+\end{align}
+则Jacobi行列式
+\begin{align}
+    |J|=&\begin{vmatrix}
+        \frac{\partial x'}{\partial x} & \frac{\partial x'}{\partial t}\\
+        \frac{\partial t'}{\partial x} &  \frac{\partial t'}{\partial t}
+    \end{vmatrix}\\
+    =&\begin{vmatrix}
+        \frac{1}{\sqrt{1-\beta^2}} & \frac{-\beta c}{\sqrt{1-\beta^2}}\\
+        \frac{-\beta /c}{\sqrt{1-\beta^2}} & \frac{1}{\sqrt{1-\beta^2}}
+    \end{vmatrix}\\
+    =&\frac{1}{1-\beta^2}-\frac{\beta^2}{1-\beta^2}\\
+    =&1
+\end{align}
+
+这意味着在对不同坐标系中的物理量进行积分时，总是有
+\begin{align}
+    \mathrm{d}x'\mathrm{d}y'\mathrm{d}z'\mathrm{d}t'=\mathrm{d}x\mathrm{d}y\mathrm{d}z\mathrm{d}t
+\end{align}
+换言之，四维体积元是一个不变量。
+
+\section{在闵可夫斯基空间中推导洛伦兹变换式}
+\subsection{题目}
+在3+1维闵可夫斯基空间中推导K'系相对于K系沿任意方向以速度v运动的洛伦兹变换式
+\subsection{解}
+（待完成）
+
+\end{document}

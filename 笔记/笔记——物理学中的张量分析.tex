@@ -1,0 +1,1430 @@
+\documentclass{book}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{ctex}
+\pagestyle{fancy}
+\lhead{\today}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{esint}
+\usepackage{mathrsfs}
+
+\title{《物理学中的张量分析》笔记}
+\author{Armour Piercer}
+\date{February 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{align*}
+    \mathbf{M}\cdot\boldsymbol{\Lambda}\cdot\mathbf{N}\,\,\boldsymbol{!}
+\end{align*}
+
+\begin{align*}
+    \omega\mathscr{H}\alpha\tau \quad \subset \alpha\Pi\quad
+    \begin{bmatrix}
+        1&0\\
+        0&1
+    \end{bmatrix}
+    \quad \zeta\alpha\gamma\, \boldsymbol{?}
+\end{align*}
+
+
+\chapter{三维欧氏空间中的矢量与张量}       
+\section{张量的定义}
+只要在一个坐标系中给出分量，同时给出坐标变换时分量的变换规律，就能定义一个与坐标系的选择无关的客观物理量，这就是定义张量的方法。
+
+分类：按角标数分类，有n个角标的张量叫做n阶张量，完整定义包括在一个坐标系中给出$3^n$个数，并规定这些数在坐标变换时的变换规律。
+
+\section{三维空间中的矢量代数}
+\subsection{坐标基矢}
+二阶对称$\delta$符号：
+\begin{align}
+    \delta_{ij}=\left\{
+    \begin{aligned}
+        0, \,\,i\neq j\\
+        1, \,\,i=j
+    \end{aligned}
+    \right.
+\end{align}
+
+三阶完全反对称符号$\varepsilon_{ijk}$：对其三个下标中任意两个的交换都反对称，
+\begin{align}
+    \varepsilon_{ijk} = -\varepsilon_{jik} = -\varepsilon_{ikj} = -\varepsilon_{kji} = \varepsilon_{jki} = \varepsilon_{kij}=1
+\end{align}
+当任意两下标相同时，$\varepsilon=0$。
+
+则有（右手系中的）坐标基矢运算规则：
+\begin{align}
+    \mathbf{e}_i\cdot\mathbf{e}_j =& \delta_{ij}\\
+    \mathbf{e}_i\times \mathbf{e}_j =& \sum_{k=1}^3 \varepsilon_{ijk}\mathbf{e}_k
+\end{align}
+
+\subsection{矢量运算}
+\subsubsection{爱因斯坦求和约定}
+1、哑标：公式中进行了求和的角标。哑标并不取任何特定值，而是在作和过程中取遍所有值。
+
+2、自由标：不作和的角标称为自由标。对任何等式，左右两边的自由标必须正好对应。
+
+3、当两个和式相乘时，哑标不能重复。如果两个和式原先采用的哑标相同，则相乘时应当将其中一个哑标换为其他符号。
+
+\subsubsection{任意矢量的点积和叉积}
+假定矢量
+\begin{align}
+    \mathbf{a}=&\sum_{i=1}^3 a_i\mathbf{e}_i\\
+    \mathbf{b}=&\sum_{i=1}^3b_i\mathbf{e}_i
+\end{align}
+
+则点积：
+\begin{align}
+    \mathbf{a}\cdot\mathbf{b} =& \sum_{i=1}^3\sum_{j=1}^3a_ib_j\mathbf{e}_i\cdot\mathbf{e}_j = \sum_{i=1}^3a_ib_i\\
+    \mathbf{a}\times\mathbf{b} =& \sum_{i=1}^3\sum_{j=1}^3a_ib_j\mathbf{e}_i\times\mathbf{e}_j=\sum_{i=1}^3\sum_{j=1}^3\sum_{k=1}^3\varepsilon_{ijk}a_ib_j\mathbf{e}_k
+\end{align}
+
+\subsubsection{混合积}
+\textbf{标量三重积$\mathbf{a}\cdot\mathbf{b}\times\mathbf{c}$}
+ 
+行列式记法：
+\begin{align}
+    \mathbf{a}\cdot\mathbf{b}\times\mathbf{c}=\begin{vmatrix}
+        a_1 & a_2 & a_3\\
+        b_1 & b_2 & b_3\\
+        c_1 & c_2 & c_3
+    \end{vmatrix}
+\end{align}
+
+\textbf{矢量三重积}
+
+展开式：213-312
+\begin{align}
+    \mathbf{a}\times(\mathbf{b}\times\mathbf{c}) = \mathbf{b}(\mathbf{a}\cdot\mathbf{c})-\mathbf{c}(\mathbf{a}\cdot\mathbf{b})
+\end{align}
+
+性质：轮换不变性
+\begin{align}
+    \mathbf{a}\cdot\mathbf{b}\times\mathbf{c} = \mathbf{c}\cdot\mathbf{a}\times\mathbf{b} = \mathbf{b}\cdot\mathbf{c}\times\mathbf{a}
+\end{align}
+
+\subsubsection{常用公式}
+\textbf{1、反对称张量的行列式记号形式}
+\begin{align}
+    \begin{vmatrix}
+        a_1 & a_2 & a_3\\
+        b_1 & b_2 & b_3\\
+        c_1 & c_2 & c_3
+    \end{vmatrix}
+     = 
+     \sum_{i,j,k=1}^3\varepsilon_{ijk}a_ib_jc_k
+\end{align}
+
+\textbf{对称与反对称符号的关系}
+\begin{align}
+    \sum_{k=1}^3\varepsilon_{ijk}\varepsilon_{klm} = \delta_{il}\delta_{jm} - \delta_{im}\delta_{jl}
+\end{align}
+
+\section{正交变换}
+这一节只讨论坐标原点不动的变换，包括转动、镜面反射、反演。这三种变换都保持矢量点积的公式不变，统称为正交变换。
+\subsection{基矢的变换}
+设原先坐标系的基矢为：
+\begin{align}
+    \mathbf{e}_1,\,\mathbf{e}_2,\,\mathbf{e}_3
+\end{align}
+转动后的坐标基矢为
+\begin{align}
+    \mathbf{e}_1',\,\mathbf{e}_2',\,\mathbf{e}_3'
+\end{align}
+
+这三个矢量在原坐标系中，可分别表示为
+\begin{align}
+    (A_{1'1},\,A_{1'2},\,A_{1'3})\\
+    (A_{2'1},\,A_{2'2},\,A_{2'3})\\
+    (A_{3'1},\,A_{3'2},\,A_{3'3})
+\end{align}
+
+即有\textbf{新旧坐标基矢之间的变换公式}：
+\begin{align}
+    \mathbf{e}_i' = \sum_{i=1}^3 A_{i'i}\mathbf{e}_i
+\end{align}
+
+易得换算中的系数
+\begin{align}
+    A_{i'i} = \mathbf{e}_i'\cdot\mathbf{e}_i
+\end{align}
+即\textbf{$A_{i'i}$等于新旧坐标轴夹角的余弦}
+
+\subsection{三种正交变换}
+\subsubsection{坐标转动}
+坐标系类型不变：右手系转动后仍为右手系，左手系转动后仍为左手系。
+\subsubsection{镜面反射}
+变换公式：
+\begin{align}
+    \left\{
+\begin{aligned}
+    \mathbf{e}_1' =& -\mathbf{e}_1\\
+    \mathbf{e}_2' =& \mathbf{e}_2\\
+    \mathbf{e}_3' =& \mathbf{e}_3
+\end{aligned}
+    \right.
+\end{align}
+
+结果：坐标系类型发生改变
+
+\subsubsection{反演}
+三个坐标基矢都改号的变换叫反演：
+\begin{align}
+    \left\{
+\begin{aligned}
+    \mathbf{e}_1' =& -\mathbf{e}_1\\
+    \mathbf{e}_2' =& -\mathbf{e}_2\\
+    \mathbf{e}_3' =& -\mathbf{e}_3
+\end{aligned}
+    \right.
+\end{align}
+
+反演可以看成先对一个平面（如$\mathbf{e}_2-\mathbf{e}_3$平面）进行镜面反射，然后绕另外1轴转180°得到。
+
+结果：坐标系类型改变。
+
+\subsection{赝矢量与赝标量}
+\subsubsection{赝矢量：坐标反演变换时要改变方向的矢量}
+例子：所有用两个真矢量的叉乘定义的量。如角动量、角速度。
+
+\subsubsection{赝标量：只在转动变换时不变，反演时要改号的量}
+例子：三个真矢量的标量三重积$\mathbf{a}\cdot\mathbf{b}\times\mathbf{c}$
+
+\subsection{矢量分量的变换规律}
+矢量的分量与对应的坐标基矢有相同的变换规律。即，若坐标基矢变换满足
+\begin{align}
+    e_i' = \sum_{i=1}^3A_{i'i}e_i,\,\,i'=1,2,3
+\end{align}
+则（真矢量的）矢量变换满足
+\begin{align}
+    a_i' = \sum_{i=1}^3A_{i'i}a_i,\,\,i'=1,2,3
+\end{align}
+
+赝矢量的矢量变换需要区分坐标变换类型。在坐标旋转时，变换规则与坐标基矢一致；当坐标反演时，与坐标基矢的变换相差符号。
+\begin{align}
+    a_i'=\left\{
+\begin{aligned}
+    &\sum_{i=1}^3A_{i'i}a_i,\,\,Rotation\\
+    &-\sum_{i=1}^3A_{i'i}a_i,\,\,Inversion
+\end{aligned}
+    \right.\,\,\,\,(i'=1,2,3)
+\end{align}
+
+\subsection{正交变换}
+\subsubsection{正交变换条件}
+正交变换矩阵的转置逆矩阵等于其自身，即
+\begin{align}
+    \tilde{\mathbf{A}}^{-1}=\mathbf{A}
+\end{align}
+等价条件为：
+\begin{align}
+    \sum_{i=1}^3A_{ij}A_{ik}=\delta_{jk}
+\end{align}
+
+\section{三维欧氏空间中张量的定义}
+\subsection{三维欧氏空间}
+欧氏空间：矢量点积的公式具有
+\begin{align}
+     \mathbf{a}\cdot\mathbf{b} = \sum_{i=1}^3a_ib_i
+\end{align}
+形式的空间称为（真）欧氏空间。
+
+\subsection{三维欧氏空间中张量的定义}
+\subsubsection{一阶张量}
+在坐标系$\mathbf{e}_i$(i=1,2,3)中给定三个数$x_i$(i=1,2,3)。如果当坐标变换
+\begin{align}\label{1.4.2-1}
+    \mathbf{e}_i'=\sum_{i=1}^3A_{i'i}\mathbf{e}_i
+\end{align}
+时，它按照
+\begin{align}
+    x_i'=\sum_{i=1}^3A_{i'i}x_i
+\end{align}
+变换，则称它为一阶张量；如果它按照
+\begin{align}
+    x_i'=\left\{
+\begin{aligned}
+    &\sum_{i=1}^3A_{i'i}x_i,\,\,Rotation\\
+    &-\sum_{i=1}^3A_{i'i}x_i,\,\,Inversion
+\end{aligned}
+    \right.
+\end{align}
+变换，则称它为一阶赝张量。
+
+除矢量外，一个不经过原点的平面，其方程
+\begin{align}
+    a_1x_1+a_2x_2+a_3x_3=1
+\end{align}
+的系数组$(a_1,\,a_2,\,a_3)$也构成一阶张量。
+ 
+
+\subsubsection{二阶张量}
+在坐标系$\mathbf{e}_i$中给出9个数$\alpha_{ij}$，如果当坐标变换
+\begin{align}\label{1.4.2-2}
+    \mathbf{e}_i'=\sum_{i=1}^3A_{i'i}\mathbf{e}_i
+\end{align}
+时，这两个下标分别独立地按照和坐标单位矢量变换规律相同的规律进行变换，即
+\begin{align}
+    \alpha_{i'j'}=\sum_i\sum_jA_{i'i}A_{j'j}\alpha_{ij}
+\end{align}
+则这九个数构成一个二阶（真）张量。
+
+如果所给的9个数在坐标反演时，除了两个下标分别独立地按照和坐标单位矢量的变换规律相同的规律变换外，还要变号，则得到二阶赝张量。 
+
+\subsubsection{高阶张量}
+在任意坐标系中给出具有$\nu$个下标的$3^\nu$个数，当坐标变换时，这$\nu$个坐标分别独立地按照和坐标基矢的变换规律相同的规律变换，
+\begin{align}
+    a_{i_1'i_2'...i_\nu'} = \sum_{i_ii_2...i_\nu}A_{i_1'i_1}A_{i_2'i_2}...A_{i_\nu'i_\nu}a_{i_1i_2...i_\nu}
+\end{align}
+则这$3^\nu$个数构成一个$\nu$阶张量。
+
+如果$a_{i_1'i_2'...i_\nu'}$在坐标转动时按以上规律变，而在坐标反演时还需变号，则$a_{i_1'i_2'...i_\nu'}$构成一个$\nu$阶赝张量。
+
+\textbf{高阶张量的例子：压电张量}
+有些晶体有压电效应，当它由于形变而产生应力时，会出现电场。用$\sigma_{jk}$表示应力张量，$D_i$表示由于压电效应产生的电感应矢量$\mathbf{D}$的分量，则$D_i$是$\sigma_{jk}$的函数。这一函数关系可以写成：
+\begin{align}
+    D_i = \sum_{jk}4\pi\gamma_{ijk}\sigma_{jk}
+\end{align}
+$\gamma_{ijk}$代表压电张量，即为一个三阶张量。
+
+
+\subsection{一阶和二阶张量的整体符号}
+一阶张量的整体符号就是通常的矢量符号，即
+\begin{align}
+    \mathbf{a}=\sum_ia_i\mathbf{e}_i
+\end{align}
+
+二阶张量在物理学中常写为并矢形式，即
+\begin{align}
+    \overset{\twoheadrightarrow}{A}=\sum_{ij}a_{ij}\mathbf{e}_i\mathbf{e}_j
+\end{align}
+
+在这一符号体系下，二阶单位张量（即前面提到的二阶对称张量）$\delta_{ij}$可表示为
+\begin{align}
+    \overset{\twoheadrightarrow}{e}=\sum_i\mathbf{e}_i\mathbf{e}_i
+       \end{align}
+
+\section{张量的运算}
+
+\subsection{张量的基本运算}
+张量运算包括加法、乘法、缩并和置换。
+\subsubsection{张量加法}
+设有两个同阶张量$a_{i_1i_2...i_\nu}$和$b_{i_1i_2...i_\nu}$，它们的和是对应分量分别作和，即
+\begin{align}
+    c_{i_1i_2...i_\nu}=a_{i_1i_2,,,i_\nu}+b_{i_2i_2...i_\nu}
+\end{align}
+
+\subsubsection{张量乘法}
+设有两个张量$a_{i_1i_2...i_\mu}$和$b_{i_1i_2...i_\nu}$，则其乘积是
+\begin{align}
+    c_{i_1i_2...i_{\mu+\nu}}=a_{i_1i_2...i_\mu}b_{i_1i_2...i_\nu}
+\end{align}
+式中，下标$i_1,\,i_2,\,...i_{\mu+\nu}$都只能取1,2,3这三个值；而下标的下标1,2,...$\mu+\nu$是用来标记不同下标的符号。
+
+最简单的例子就是两个一阶张量相乘得到一个二阶张量，称为$\mathbf{a}$和$\mathbf{b}$的并矢。即
+\begin{align}
+    \overset{\twoheadrightarrow}{c}=\mathbf{a}\mathbf{b}
+\end{align}
+
+\subsubsection{张量的缩并}
+设有一个二阶以上的张量$a_{i_1i_2...i_\mu}$，任意选定其两个下标（例如第1个和第$\nu$个下标），将这两个下标取相等值的那些分量抽出来并作和，得到
+\begin{align}
+    c_{i_2i_3...i_\nu} = \sum_la_{li_2i_3...i_{\nu-1}l}
+\end{align}
+则$c_{i_2i_3...i_\nu}$称为$a_{i_1i_2...i_\mu}$对下标$i_1$和$i_\nu$的缩并，它有$\nu-2$个下标。
+
+常用的操作是先将两个张量相乘，再进行缩并。
+
+\subsubsection{指标置换}
+将一个张量$a_{i_1i_2...i_\mu}$的任意两个下标，例如$i_p$和$i_q$的位置互换，仍然得到一个张量：
+\begin{align}
+    b_{i_1...i_p...i_q...i_\nu}=a_{i_1...i_q...i_p...i_\nu}
+\end{align}
+
+\subsection{对三阶完全反对称张量赝张量性质的证明}
+\subsection{三维欧氏空间中的二阶张量}
+\subsubsection{对称-反对称分解}
+若一个二阶张量$b_{ij}$对它的两个下标交换对称，即
+\begin{align}
+    b_{ij}=b_{ji}
+\end{align}
+则称其为二阶对称张量；
+
+若一个二阶张量$c_{ij}$对下标的交换反对称，即
+\begin{align}
+    c_{ij}=-c_{ji}
+\end{align}
+则称其为二阶反对称张量。
+
+任意张量都可以分解为对称分量与反对称分量，即：
+\begin{align}
+    a_{ij}=a_{(ij)}+a_{[ij]}
+\end{align}
+式中，
+\begin{align}
+    a_{(ij)}=\frac{1}{2}(a_{ij}+a_{ji})
+\end{align}
+为张量a的对称分量，这一运算称为\textbf{对称化}；
+\begin{align}
+    a_{[ij]}=\frac{1}{2}(a_{ij}-a_{ji})
+\end{align}
+称为张量a的反对称分量，这一运算称为\textbf{反对称化}。
+
+\subsubsection{反对称二阶张量}
+在三维欧氏空间中，反对称二阶张量实质上等同于一个赝矢量。也就是说，任何反对称二阶张量总可以表示为
+\begin{align}
+    (b_{ij})=
+    \begin{bmatrix}
+        0 & a_3 & -a_2\\
+        -a_3 & 0 & a_1\\
+        a_2 & -a_1 & 0
+    \end{bmatrix}
+\end{align}
+其中，$(a_1,\,a_2,\,a_3)$构成一个一阶赝矢量。
+
+磁场强度$H$是一个赝矢量，同时也可以写成反对称二阶张量形式：
+\begin{align}
+    (F_{ij})=\begin{bmatrix}
+        0 & H_3 & -H_2\\
+        -H_3 & 0 & H_1\\
+        H_2 & -H_1 & 0
+    \end{bmatrix}
+\end{align}
+称为磁场强度张量。
+
+\subsubsection{二阶张量的不变量：迹和行列式}
+1、二阶张量的迹在坐标变换中是不变量；特别地，反对称二阶张量的迹为0。即，
+\begin{align}
+    \sum_ia_{ii}=const
+\end{align}
+
+2、二阶张量的行列式在坐标变换中是不变量。
+\begin{align}
+\frac{1}{3!}\sum_{ijk,\,lmn}\varepsilon_{ijk}\varepsilon_{lmn}a_{il}b_{jm}a_{kn}=|a_{ij}|=
+    \begin{vmatrix}
+        a_{11} & a_{12} & a_{13}\\
+        a_{21} & a_{22} & a_{23}\\
+        a_{31} & a_{32} & a_{33}
+    \end{vmatrix}
+    =
+    const
+\end{align}
+
+\section{矢量场与张量场，梯度，散度，旋度}
+推广矢量场的定义，若在空间中每一点都定义一个同阶的张量，则称其为张量场，记为
+\begin{align}
+    a_{ijk}(M)=a_{ijk}(x_1,x_2,x_3)
+\end{align}
+它的每一个分量都是M的坐标$(x_1,x_2,x_3)$的函数。物理学中，不妨假定这个函数的性质是足够好的。
+\subsection{导数张量}
+设有一个$\nu$阶张量场$a_{i_1i_2...i_\nu}(M)$，它对$x_l$的偏导数定义为
+\begin{align}
+    \partial_la_{i_1i_2...i_\nu}(M)=\frac{\partial}{\partial x_l}a_{i_1i_2...i_\nu}(M)
+\end{align}
+
+\textbf{导数张量是一个$\nu+1$阶的张量。}
+
+\subsection{标量场的梯度}
+
+梯度：
+\begin{align}
+    \nabla a = \sum_{i=1}^3\mathbf{e}_i\frac{\partial a}{\partial x_i}
+\end{align}
+
+方向导数：
+\begin{align}
+    \frac{\partial a}{\partial \mathbf{b}}=\mathbf{b}\cdot \nabla a=\sum_{i=1}^3(\mathbf{b}\cdot\mathbf{e}_i)\frac{\partial a }{\partial x_i}
+\end{align}
+
+\subsection{矢量场的散度与高斯定理}
+一阶张量场$a_i(M)$的导数张量是一个二阶张量场，
+\begin{align}
+    \partial_la_i = \frac{\partial }{\partial x_l}a_i
+\end{align}
+将它与$\delta_{ij}$缩并，得到一个标量场，称为$a_i$的散度：
+\begin{align}
+    \nabla\cdot a=\sum_{li}\delta_{li}\frac{\partial a_i}{\partial x_l}=\sum_i\frac{\partial a_i}{\partial x_i}
+\end{align}
+
+对二阶矢量场，总有高斯定理：
+\begin{align}
+    \oint \sum E_idS_i = \int_V\sum \frac{\partial E_i}{\partial x_i}dV
+\end{align}
+
+\subsection{矢量场的旋度与斯托克斯定理}
+将$\partial_ja_k$与$\varepsilon_{ijk}$缩并，得到一个赝矢量场，称为a的旋度：
+\begin{align}
+    \nabla\times\mathbf{a}=\sum_i\mathbf{e}_i\sum_{jk}\varepsilon_{ijk}\frac{\partial }{\partial x_j}a_k
+\end{align}
+
+有斯托克斯定理：
+\begin{align}
+    \oint \mathbf{A}\cdot \mathrm{d}\mathbf{l}=\int_S \nabla\times \mathbf{A}\mathrm{d}\boldsymbol{\sigma}
+\end{align}
+
+\chapter{仿射空间与伪欧氏空间中的张量}
+\section{改变空间性质的必要性}
+\section{仿射空间中的张量}
+\subsection{仿射空间的定义}
+仿射空间是一些元素的集合，这些元素称为矢量。在这一集合中定义了：
+
+（1）矢量的加法；
+
+（2）矢量的数乘；
+
+（3）零矢量；
+
+（4）逆矢量。
+
+仿射空间没有定义矢量的点积，故与之相应的性质也就随之消失：包括矢量的长度、两个矢量的夹角、正交性和坐标变换的正交性。仿射空间是无度量的线性空间，而欧氏空间是有（欧氏）度量的线性空间。
+
+\subsection{仿射空间中的坐标系及其变换}
+\subsubsection{坐标系与逆变展开}
+仿射空间中，利用一组线性无关的矢量作为坐标基矢。
+
+假设在n维空间中，选定的坐标基矢为$\mathbf{e}_1,\,\mathbf{e}_2,\,...,\,\mathbf{e}_n$，则任意矢量$\mathbf{x}$都应当与坐标基矢线性相关。即：
+\begin{align}
+    \alpha x+\alpha_1\mathbf{e}_1+\alpha_2 \mathbf{e}_2+...+\alpha_n\mathbf{e}_n=0\,\,\,\alpha\neq0
+\end{align}
+可以用坐标基矢展开为
+\begin{align}
+    x=x^1\mathbf{e}_1+x^2\mathbf{e}_2+...+x^n\mathbf{e_n}=\sum_{i=1}^n x^i\mathbf{e}_i
+\end{align}
+式中，
+\begin{align}
+    x^i=-\frac{\alpha_i}{\alpha}
+\end{align}
+称为矢量$\mathbf{x}$在仿射坐标系${\mathbf{e}_i}$中的\textbf{逆变分量}。
+
+\subsubsection{坐标系变换}
+在同一个仿射空间中，另选一组n个线性无关的矢量
+\begin{align}
+    \mathbf{e}_{1'},\,\mathbf{e}_{2'},\,...\mathbf{e}_{n'}
+\end{align}
+把它们用老坐标基矢展开，有
+\begin{align}
+    \begin{bmatrix}
+        \mathbf{e_{1'}}\\
+        \mathbf{e_{2'}}\\
+        .\\
+        .\\
+        .\\
+        \mathbf{e_{n'}}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        A_{1'}^1 & A_{1'}^2 & .&.&.&A_{1'}^n\\
+        A_{2'}^1 & A_{2'}^2 & .&.&.&A_{2'}^n\\
+        .&&.&&&\\
+        .&&&.&&\\
+        .&&&&.&\\
+        A_{n'}^1 & A_{n'}^2 & .&.&.&A_{n'}^n
+    \end{bmatrix}
+    \begin{bmatrix}
+        \mathbf{e_{1}}\\
+        \mathbf{e_{2}}\\
+        .\\
+        .\\
+        .\\
+        \mathbf{e_{n}}
+    \end{bmatrix}
+\end{align}
+
+或简写为：
+\begin{align}
+    \mathbf{e}_{i'}=\sum_{i=1}^nA_{i'}^i\mathbf{e}_i
+\end{align}
+
+在仿射空间中，变换矩阵所满足的唯一条件是：
+
+\textbf{变换矩阵$(A_{i'}^i)$的行列式不为0}（但不一定等于1，这一点与欧氏空间中的变换矩阵不同。）
+
+\subsubsection{逆矩阵与反变换}
+由于变换矩阵$A_{i'}^i$的行列式不为0，故存在逆矩阵$(A^{-1})_{i}^{i'}$。按照定义，有如下关系：
+\begin{align}
+    \sum_{i=1}^n A_{i'}^i(A^{-1})_i^{j'}=\delta_{i'}^{j'}\\
+    \sum_{i=1}^n (A^{-1})_i^{i'}A_{i'}^j=\delta_i^j
+\end{align}
+
+式中，符号
+\begin{align}
+    \delta_i^j=\left\{\begin{aligned}
+        0,\,i\neq j\\
+        1,\,i=j
+    \end{aligned}
+    \right.
+\end{align}
+
+利用此性质，容易证明
+\begin{align}
+    \mathbf{e}_i=\sum_{i'}(A^{-1})_i^{i'}\mathbf{e}_{i'}
+\end{align}
+
+\subsection{逆变张量与协变张量}
+
+由于仿射空间中的变换矩阵不是正交矩阵，仿射空间中的张量有逆变和协变两种：
+\subsubsection{逆变张量}
+\textbf{一阶逆变张量的定义}
+
+在n维仿射空间中的任意坐标系中给出一组数$x^i$，如果当坐标基矢由矩阵$A_{i'}^i$变换时，这一组数由其转置逆矩阵$(A^{-1})_i^{i'}$变换，则这一组数$x^i$构成一个\textbf{一阶逆变张量}。 
+
+\textbf{一阶逆变张量的例子}
+
+仿射空间中的矢量
+
+\subsubsection{协变张量}
+在n维仿射空间中的任意坐标系中给出一组数$a_i$，如果当坐标基矢由矩阵$A_{i'}^i$变换时，这一组数相同的矩阵$A_{i'}^i$变换，则这一组数$a_i$构成一个\textbf{一阶协变张量}。 
+
+\textbf{协变张量的例子}
+
+若仿射空间中点的坐标记为$x^i$，则
+\begin{align}
+    \sum_{i=1}^na_ix^i=1
+\end{align}
+是仿射空间中一个平面的方程。方程中系数构成的张量$a_i$就是一个协变张量。
+
+\subsubsection{高阶张量}
+在仿射空间的任一坐标系中给定一组数
+\begin{align}
+    a_{i_1i_2...i_\nu}^{j_1j_2...j_\mu}
+\end{align}
+它有$\nu$个下标，$\mu$个上标。如果当坐标变换时，每个下标独立地按照坐标基矢的变换规律$A_{i'}^i$变，每个上标独立地按照坐标基矢变换矩阵的转置逆矩阵$(A^{-1})_i^{i'}$变：
+\begin{align}
+    a_{i_1'i_2'...i_\nu'}^{j_1'j_2'...j_\mu'}=\sum_{\substack{
+        i_1i_2...i_\nu\\
+        j_1j_2...j_\mu
+    }}
+    A_{i_1'}^{i_1}A_{i_2'}^{i_2}...A_{i_\nu'}^{i_\nu}(A^{-1})_{j_1}^{j_1'}(A^{-1})_{j_2}^{j_2'}...(A^{-1})_{j_\mu}^{j_\mu'}a_{i_1i_2...i_\nu}^{j_1j_2...j_\mu}
+\end{align}
+则称这一组数为$\nu$阶协变、$\mu$阶逆变的张量。
+
+\subsection{张量运算}
+\subsubsection{张量加法}
+两个张量的协变指标数和逆变指标数必须相等：
+\begin{align}
+    c_{i_1i_2...i_\nu}^{j_1j_2...j_\mu}=a_{i_1i_2...i_\nu}^{j_1j_2...j_\mu}+b_{i_1i_2...i_\nu}^{j_1j_2...j_\mu}
+\end{align}
+
+\subsubsection{张量乘法}
+张量乘法运算时，因子中的协变指标在乘积中也是协变指标，因子中的逆变指标在乘积中也是逆变指标，即
+\begin{align}
+    c_{i_1i_2...i_{\mu+\nu}}^{j_1j_2...j_{m+l}}=a_{i_1i_2...i_\mu}^{j_1j_2...j_m}b_{i_{\mu+1}i_{\mu+2}...i_{\mu+\nu}}^{j_{m+1}j_{m+2}...j_{m+l}}
+\end{align}
+
+\subsubsection{指标缩并}
+指标缩并时只能将一个上指标和一个下指标进行缩并，例如：
+\begin{align}
+    c_{i_1i_3...i_\nu}^{j_1j_2...j_{\mu-1}}=\sum_{l=1}^na_{i_1li_3...i_\nu}^{j_1j_2...l}
+\end{align}
+同类指标缩并会导致得到的结果不再按照张量规律变换，没有意义。
+
+此外，仿射空间中的指标缩并运算可以看成是所给张量与$\delta_i^j$相乘后再缩并的结果。
+
+\subsubsection{指标置换}
+只有同类型的指标可以置换。
+
+\subsection{从仿射空间到欧氏空间}
+通过在仿射空间的基础上加进矢量点积的定义（这是通过定义一个\textbf{度规张量}实现的），就可以得到一个有度量的空间。依赖于不同的点积定义，就可以得到本质上不同的空间。
+
+如果在一个n维仿射空间中，如下定义点积：
+\begin{align}
+    \mathbf{x}\cdot\mathbf{y}=\sum_{i=1}^n\sum_{j=1}^ng_{ij}x^iy^i
+\end{align}
+式中，
+\begin{align}
+    g_{ij}=\left\{\begin{aligned}
+        0,\,\,i\neq j\\
+        1,\,\,i=j
+    \end{aligned}
+    \right.
+\end{align}
+就定义了一个真欧氏空间。
+
+欧氏空间中的坐标变换要求保持矢量点积公式不变，因而只能是正交变换。在正交变换下，$g_{ij}$是一个二阶张量，称为欧氏空间中的度规张量。
+
+\subsubsection{度规张量}
+度规张量是指用来衡量度量空间中距离，面积及角度的二阶张量。
+
+定义度规张量后，在欧氏空间中多了一种坐标运算——升降指标。对逆变张量$x^i$，可以用度规张量将其上标降成下标，即
+\begin{align}
+    x_i=\sum_jg_{ij}x^j=x^i
+\end{align}
+
+即在欧氏空间中，每个逆变张量都对应一个协变张量，且各对应张量的数值相等。因此在欧氏空间中不必要区分逆变和协变性。
+
+\section{伪欧氏空间中的张量}
+在仿射空间中加上非对角元为0，对角元为$\pm1$的度规所形成的空间称为\textbf{欧氏空间}。如果所有对角元均有相同的符号，称为\textbf{真欧氏空间}；如果对角元中既有$+1$又有$-1$，称为\textbf{伪欧氏空间}。
+
+\subsection{伪欧氏空间的建立}
+
+在仿射空间中定义点积：
+\begin{align}
+    g_{\alpha\beta}&=\left\{\begin{aligned}
+        &0, \,\,\alpha \neq\beta\\
+        &1,\,\,\alpha=\beta=0\\
+        &-1,\,\,\alpha=\beta=1,2,3
+    \end{aligned}\right.\\
+    x\cdot y&=\sum_{\alpha=0}^3\sum_{\beta=0}^3g_{\alpha\beta}x^\alpha y^\beta
+\end{align}
+得到的空间称为伪欧氏空间。
+
+\subsection{伪欧氏空间中的坐标基矢}
+伪欧氏空间中坐标基矢$e_\alpha(\alpha=0,1,2,3)$满足：
+\begin{align}
+    e_\alpha \cdot e_\beta=g_{\alpha\beta}
+\end{align}
+
+也即，坐标基矢\textbf{相互正交}，且空间轴坐标基矢的长度是虚数单位$i$而不是1.
+
+可将任意矢量$x$展开为
+\begin{align}
+    x=\sum_\alpha x^\alpha e_\alpha
+\end{align}
+
+\subsection{伪欧氏空间中的张量}
+
+\subsubsection{度规张量}
+\begin{align}\label{0,1,-1}
+    g_{\alpha\beta}=\left\{\begin{aligned}
+        &0, \,\,\alpha \neq\beta\\
+        &1,\,\,\alpha=\beta=0\\
+        &-1,\,\,\alpha=\beta=1,2,3
+    \end{aligned}\right.
+\end{align}
+称为协变度规张量。类似地定义
+\begin{align}
+    g^{\alpha\beta}=\left\{\begin{aligned}
+        &0, \,\,\alpha \neq\beta\\
+        &1,\,\,\alpha=\beta=0\\
+        &-1,\,\,\alpha=\beta=1,2,3
+    \end{aligned}\right.
+\end{align}
+称为逆变度规张量。
+
+则有
+\begin{align}
+    g_{\alpha\gamma}g^{\beta\gamma}=\delta_\alpha^\beta=\left\{\begin{aligned}
+        0,\,\,\alpha\neq\beta\\
+        1,\,\,\alpha=\beta
+    \end{aligned}\right.
+\end{align}
+
+可以以矩阵形式写出伪欧氏空间中的度规张量：
+\begin{align}
+    (g_{\alpha\beta})=(g^{\alpha\beta})=\begin{bmatrix}
+        1&0&0&0\\
+        0&-1&0&0\\
+        0&0&-1&0\\
+        0&0&0&-1
+    \end{bmatrix}
+\end{align}
+
+\subsubsection{升降指标}
+
+定义度规张量后，可以在伪欧氏空间中定义\textbf{升降指标运算}：
+\begin{align}
+    a_{\alpha\beta\gamma}=g_{\alpha\mu}g_{\beta\nu}g_{\gamma\rho}a^{\mu\nu\rho}\\
+    a^{\alpha\beta\gamma}=g^{\alpha\mu}g^{\beta\nu}g^{\gamma\rho}a_{\mu\nu\rho}
+\end{align}
+
+也即，伪欧氏空间中张量的指标可以随意上升下降，协变和逆变张量的区分没有实际意义。对如同\ref{0,1,-1}定义的度规张量，\textbf{0指标升降时分量不变号，非0指标升降时分量变号。}
+
+\subsubsection{矢量点积的等效形式}
+
+\begin{align}
+    x\cdot y=g_{\alpha\beta}x^\alpha y^\beta=g^{\alpha\beta}x_\alpha y_\beta=x^\alpha y_\beta=x_\alpha y^\beta
+\end{align}
+
+如果希望两个协变指标或者两个逆变指标进行缩并，需要包含度规张量进行指标升降；如果一个协变指标和一个逆变指标缩并，则不需要出现度规张量。
+
+在\ref{0,1,-1}定义的伪欧氏空间中，采用协变指标和逆变指标缩并的形式的优势在于它具有与欧氏空间点积类似的表示：
+\begin{align}
+    x\cdot y=&x_0y^0+x_1y^1+x_2y^2+x_3y^3\\
+    =&x^0y_0+x^1y_1+x^2y_2+x^3y_3
+\end{align}
+但同类指标缩并需要带负号：
+\begin{align}
+    x\cdot y=&x^0y^0-x^1y^1-x^2y^2-x^3y^3\\
+    =&x_0y_0-x_1y_1-x_2y_2-x_3y_3
+\end{align}
+
+\subsubsection{完全反对称张量}
+
+四维伪欧氏空间中的完全反对称张量是四阶赝张量。
+
+\textbf{反变四阶完全反对称张量}定义为对任意两个指标的交换都反对称，且
+\begin{align}
+    e^{0123}=1
+\end{align}
+
+\textbf{协变四阶完全反对称张量}定义为对任意两个指标的交换都反对称，且
+\begin{align}
+    e_{0123}=-1
+\end{align}
+
+\textbf{完全反对称张量的缩并}
+\begin{align}
+    e^{\mu\nu\lambda\rho}e_{\alpha\beta\lambda\rho}=-2(\delta_\alpha^\mu\delta_\beta^\nu-\delta_\beta^\mu\delta_\alpha^\nu)
+\end{align}
+
+\subsubsection{对偶张量}
+如果$A^{\mu\nu}$是一个反对称二阶张量，则
+\begin{align}
+    A^{*\mu\nu}=\frac{1}{2}e^{\mu\nu\lambda\rho}A_{\lambda\rho}
+\end{align}
+成为$A^{\mu\nu}$的对偶张量。
+
+性质：
+
+（1）如果$A^{\mu\nu}$是一个二阶真张量，则对偶张量$A^{*\mu\nu}$是一个二阶赝张量。
+
+（2）二者的乘积$A^{\mu\nu}A^*_{\mu\nu}=\frac{1}{2}e_{\mu\nu\lambda\rho}A^{\mu\nu}A^{\lambda\nu}$是一个赝标量。
+
+\subsection{伪欧氏空间中的张量微分运算}
+伪欧氏空间中，\textbf{对逆变坐标求微分得到协变张量，对协变指标求微分得到逆变张量。}即：
+\begin{align}
+    \partial_\mu=\frac{\partial}{\partial x^\mu}\\
+    \partial^\mu=\frac{\partial}{\partial x_\mu}
+\end{align}
+
+证明：考虑对一个标量场的全微分，有
+\begin{align}
+    \mathrm{d}f=\frac{\partial f}{\partial x^\mu}\mathrm{d}x^\mu=\frac{\partial f}{\partial x_\mu}\mathrm{d}x_\mu
+\end{align}
+可见$\partial f/\partial x^\mu$与一阶逆变张量缩并得到零阶标量，故它是一阶协变张量；$\partial f/\partial x_\mu$与一阶协变张量缩并得到零阶标量，故它是一阶逆变张量
+
+
+\section{闵可夫斯基空间}
+度规张量有三个对角元有相同符号，而另一个有不同符号的四维伪欧氏空间称为\textbf{闵可夫斯基空间}。
+
+\subsection{洛伦兹变换}
+从保持矢量点积形式的基本思路出发，可以得到闵可夫斯基空间中变换矩阵
+\begin{align}
+    (A)=\begin{bmatrix}
+        A_{0'}^0&A_{0'}^1\\
+        A_{1'}^0&A_{1'}^1
+    \end{bmatrix}
+\end{align}
+应满足
+\begin{align}
+    &A_{0'}^0A_{1'}^0=A_{0'}^1A_{1'}^1\label{闵氏空间变换性质1}\\
+    &(A_{0'}^0)^2-(A_{0'}^1)^2=1\\
+    &(A_{1'}^0)^2-(A_{1'}^1)^2=-1
+\end{align}
+
+由性质1（\ref{闵氏空间变换性质1}），可令
+\begin{align}
+    A_{0'}^0=a,\,\,A_{1'}^1=b,\,\,A_{0'}^1=a\beta,\,\,A_{1'}^0=b\beta
+\end{align}
+再由另外两条性质，可得到变换矩阵的基本形式：
+\begin{align}
+    (A)=\begin{bmatrix}
+        \frac{1}{\pm\sqrt{1-\beta^2}} & \frac{\beta}{\pm\sqrt{1-\beta^2}}\\
+        \frac{\beta}{\pm\sqrt{1-\beta^2}} & \frac{1}{\pm\sqrt{1-\beta^2}}
+    \end{bmatrix}
+\end{align}
+式中的负号代表反演操作，即0角标变换若取负号代表时间反演，1角标若取负号代表空间反演。
+
+不考虑反演时，协变基矢量有
+\begin{align}
+    e_{0'}=&\frac{e_{0}+\beta e_1}{\sqrt{1-\beta^2}}\\
+    e_{1'}=&\frac{\beta e_{0}+e_1}{\sqrt{1-\beta^2}}
+\end{align}
+
+相应地，协变分量
+\begin{align}
+    x_{0'}=&\frac{x_{0}+\beta x_1}{\sqrt{1-\beta^2}}\\
+    x_{1'}=&\frac{\beta x_{0}+x_1}{\sqrt{1-\beta^2}}
+\end{align}
+
+使用指标升降运算即可得到逆变分量变换：
+\begin{align}
+    x^{0'}=&\frac{x^{0}-\beta x^1}{\sqrt{1-\beta^2}}\\
+    x^{1'}=&\frac{\beta x^{0}-x^1}{\sqrt{1-\beta^2}}
+\end{align}
+
+代入
+\begin{align}
+    x^0=ct,\,\,x^1=x
+\end{align}
+得到
+\begin{align}
+    ct'=&\frac{ct-\beta x}{\sqrt{1-\beta^2}}\\
+    x'=&\frac{\beta ct-x}{\sqrt{1-\beta^2}}
+\end{align}
+即为\textbf{洛伦兹变换}。它对应闵氏空间中$(x,ct)$轴在$x-ct$平面上的转动操作。
+
+不难看出，$\beta$代表两个真实时空间的相对速度。
+
+\subsection{复欧氏空间}
+
+\subsubsection{复真欧氏空间与实伪欧氏空间的等价性}
+
+若定义一个四维复欧氏空间，其中三个坐标取实数，另一个坐标取纯虚数，即：
+\begin{align}
+    x^1=x,\,x^2=y,\,x^3=z,\,x^4=ict=ix^0
+\end{align}
+则矢量内积具有形式
+\begin{align}
+    x\cdot x=&(x^1)^2+(x^2)^2+(x^3)^2+(x^4)^2\\
+    =&(x^1)^2+(x^2)^2+(x^3)^2-(x^0)^2
+\end{align}
+这一空间的度规张量
+\begin{align}
+    g_{ab}=\left\{\begin{aligned}
+        0,\,\,a\neq b\\
+        1,\,\,a=b
+    \end{aligned}\right.
+\end{align}
+可见这个复真欧氏空间与实伪欧氏空间等效。但由于它不需要区分逆变和协变张量，在计算上有时更为方便。
+
+\subsubsection{复欧氏空间中的坐标转动与洛伦兹变换}
+考虑一个1+1维的复欧氏空间：
+\begin{align}
+    x^1=x,\,\,x^4=ict
+\end{align}
+
+
+在复欧氏空间中进行复的坐标转动操作时，有变换关系
+\begin{align}
+    x^{1'}=&x^1\cos\theta -x^4\sin\theta\\
+    x^{4'}=&x^1\sin\theta +x^4\cos\theta
+\end{align}
+容易验证这一变换关系在变换时保持内积定义不变，且能遍历所有的旋转变换操作。
+
+接下来我们考虑这一变换的物理意义。将原定义代入变换式，得到
+\begin{align}
+    x'=&x\cos\theta+ct(-i\sin\theta)\\
+    ct'=&x(-i\sin\theta)+ct\cos\theta
+\end{align}
+考虑固连在K'系中$x'=0$处的物体，在$t=0$时它位于$x=0$，在$t$时刻其位置为
+\begin{align}
+    (\cos\theta)x+ct(-i\sin\theta)=0
+\end{align}
+也就是说，两个坐标系间的速度等于坐标转动角的正切乘以一个虚数单位i：
+\begin{align}
+    \beta=\frac{v}{c}=i\tan\theta
+\end{align}
+由于虚数必然是实数，这就要求\textbf{坐标转动角是纯虚数}，从而其正切值才能是纯虚数。因此，复欧氏空间中的坐标转动只是形式上与实欧氏空间相同，实际上并不一样。
+
+\subsubsection{快度}
+联想到复三角函数与双曲函数关系
+\begin{align}
+    -i\tan (iy)=\tanh(y)
+\end{align}
+
+定义坐标转动角与虚数单位的乘积为\textbf{快度}：
+\begin{align}
+    y=i\theta
+\end{align}
+则有
+\begin{align}
+    \beta=\tanh y
+\end{align}
+快度定义在闵氏空间可表述为：
+\begin{align}
+    y=\mathrm{arctanh}\,\beta=\frac{1}{2}\log\left(\frac{1+\beta}{1-\beta}\right)
+\end{align}
+
+则洛伦兹变换式表为
+\begin{align}
+    x'=&(\cosh y)x-(\sinh y)ct\\
+    ct'=&-(\sinh y)x+(\cosh y)ct
+\end{align}
+
+\textbf{快度的优势}
+
+在连续进行两次洛伦兹变换时，快度只需要简单地相加。即如果$K_1$相对$K$有速度$v_1$、快度$y_1$，$K_2$相对$K_1$有速度$v_2$、快度$y_2$，则$K_2$相对于$K$的快度
+\begin{align}
+    y=y_1+y_2
+\end{align}
+
+可以从快度出发，推导\textbf{速度合成公式}：
+\begin{align}
+    v=&\tanh y=\tanh (y_1+y_2)=\frac{\tanh y_1+\tanh y_2}{1+\tanh y_1\tanh y_2}\\
+    =&\frac{v_1+v_2}{1+\frac{v_1v_2}{c^2}}
+\end{align}
+
+\subsection{洛伦兹变换的几何意义}
+
+\subsection{光锥}
+
+\subsection{洛伦兹收缩}
+
+\subsection{相对论力学中的张量分析}
+高速情况下，三维矢量需要扩充到四维：
+
+位置矢量：
+\begin{align}
+    \mathbf{r}(x,\,y,\,z)\rightarrow x^\mu(x,\,y,\,z,\,t)
+\end{align}
+
+四维速度定义为$x^\mu$对固有时的导数，
+\begin{align}
+    u^\mu = c\frac{\mathrm{d}x^\mu}{\mathrm{d}\tau}=\frac{\mathrm{d}x^\mu}{\mathrm{d}t}\cdot\frac{1}{\sqrt{1-\beta^2}}=\left(\frac{\mathbf{v}}{\sqrt{1-\beta^2}},\,\frac{c}{\sqrt{1-\beta^2}}\right)
+\end{align}
+
+四维动量是$u^\mu$乘以质量m：
+\begin{align}
+    p^\mu=mu^\mu = \left(\frac{m\mathbf{v}}{\sqrt{1-\beta^2}},\frac{1}{c}\frac{mc^2}{\sqrt{1-\beta^2}}\right)=\left(\mathbf{p},\,\frac{E}{c}\right)
+\end{align}
+
+\subsubsection{性质}
+四维位置矢量的长度即为它相对于原点的间隔：
+\begin{align}
+    \sqrt{(x)^2}=\sqrt{g_{\mu\nu}x^\mu x^\nu}=\sqrt{(ct)^2-\mathbf{r}^2}=ct(1-\beta^2)=\tau
+\end{align}
+
+四维速度的自点积等于$c^2$：
+\begin{align}
+    (u)^2=g_{\mu\nu}u^\mu u^\nu =\frac{-v^2+c^2}{1-\beta^2}=c^2
+\end{align}
+
+四维动量的长度等于物体的（静止）质量乘以光速：
+\begin{align}
+    (p)^2=g_{\mu\nu}p^\mu p^\nu = \left(\frac{E}{c}\right)^2-\mathbf{p}^2=m^2c^2
+\end{align}
+这表明，任何质点的四维动量集合总是等价于一个半径为$mc$的四维球壳，故称该式为质点的\textbf{球壳条件}。
+
+同时，这一公式就是\textbf{爱因斯坦质能关系}：
+\begin{align}
+    E^2=p^2c^2+m^2c^4
+\end{align}
+
+\subsubsection{不变积分元}
+考虑球壳条件，可以从能量-动量出发给出质点的一个$\delta$函数表示方法：
+\begin{align}
+    &\delta(E^2-(p^2c^2+m^2c^4))\\
+    =&\frac{1}{2E}\left[\delta(E+\sqrt{p^2c^2+m^2c^4})+\delta(E-\sqrt{p^2c^2+m^2c^4})\right]
+\end{align}
+考虑到能量只能取正实数，可以只取后半部分，作为特定能量动量状态的$\delta$函数：
+\begin{align}
+    \frac{1}{2E}\delta(E-\sqrt{p^2c^2+m^2c^4})
+\end{align}
+
+代入四维动量的多重积分，有
+\begin{align}
+    &\int f(E,\,\mathbf{p})\delta(E^2-(p^2c^2+m^2c^4))\mathrm{d}E\mathrm{d}p^1\mathrm{d}p^2\mathrm{d}p^3\\
+    =&\int f(E,\,\mathbf{p})\delta(E-\sqrt{p^2c^2+m^2c^4})\mathrm{d}E\mathrm{d}p^1\mathrm{d}p^2\mathrm{d}p^3\\
+    =&\int f(E,\,\mathbf{p})\bigg|_{E=\sqrt{p^2c^2+m^2c^4}}\frac{1}{2E}\mathrm{d}^3\mathbf{p}
+\end{align}
+
+将
+\begin{align}
+    \frac{\mathrm{d}^3\mathbf{p}}{2E}
+\end{align}
+称为\textbf{不变积分元}，它是一个在坐标系变换时保持不变的标量。
+
+\textbf{不变积分元相对论不变性的证明}\footnote{待补充}
+
+\subsubsection{质点系统的不变质量}
+考虑一个具有n个粒子的系统，它有总的四维动量
+\begin{align}
+    P^\mu = \sum_\alpha p_\alpha^\mu
+\end{align}
+其长度$Mc$是一个标量：
+\begin{align}
+    (P)^2=\frac{1}{c^2}\left[ \left(\sum_{a=1}^n E_a\right)^2-c^2\left(\sum_{a=1}^n\mathbf{p}\right)^2 \right]=M^2c^2
+\end{align}
+M称为系统的\textbf{不变质量}，它等于在系统质心系中的总能量。
+
+\textbf{快度变换、柯尼希定理和不变质量不变性的证明}
+
+在经典力学中，有\textbf{柯尼希定理}，即任意系统的总能量等于质心运动的能量加上质心系中各质点运动的能量：
+\begin{align}
+    E_{total}=&\frac{1}{2}\sum_im_iv_i^2\\
+    =&\frac{1}{2}\sum_im_i(\mathbf{v}_{ic}+\mathbf{v}_c)^2\\
+    =&\frac{1}{2}\sum_im_iv_c^2+\frac{1}{2}\mathbf{v}_c\cdot\sum_im_i\mathbf{v}_{ic}+\frac{1}{2}\sum_im_iv_{ic}^2\\
+    =&E_c+E_{uc}
+\end{align}
+
+在相对论体系中，不方便通过速度定义质心，故质心系一般选择\textbf{零动量系}。容易看出，在低速条件下这两个定义是相同的。我们在推导过程中，并不关心质心位置、质量和动量的具体表达形式，只需要关注它满足的方程：
+\begin{align}\label{CME}
+    \mathbf{P}_c=\sum_im_i\gamma_i\mathbf{v}_i=\sum_im_i\gamma_c \mathbf{v}_c
+\end{align}
+
+我们使用快度变换，先证明\textbf{相对论情况下的柯尼希定理}，再利用柯尼希定理证明不变质量的相对论不变性。用双曲函数将快度变换表征为
+\begin{align}
+    \cosh \alpha=&\frac{1}{\sqrt{1-\beta^2}}=\gamma\\
+    \sinh \alpha=&\frac{\beta}{\sqrt{1-\beta^2}}=\beta\gamma
+\end{align}
+
+则质心方程\ref{CME}变为
+\begin{align}
+    \sum_im_i\sinh\alpha_i=\sum_im_i\sinh{\alpha_c}
+\end{align}
+能量表达式为
+\begin{align}
+    E=\gamma mc^2= mc^2\cosh \alpha
+\end{align}
+
+注意到，双曲函数满足：
+\begin{align}
+    \cosh^2 \alpha - \sinh^2\alpha =1
+\end{align}
+即
+\begin{align}
+    \cosh^2\alpha_c=1+\sinh^2\alpha_c=1+\left(\frac{\sum_im_i\sinh\alpha_i}{\sum_im_i}\right)^2
+\end{align}
+则有
+\begin{align}
+    &\left(\sum_im_i\right)^2\cosh^2\alpha_c\\
+    =&\left(\sum_im_i\right)^2+\left(\sum_im_i\sinh\alpha_i\right)^2\\
+    =&\sum_im_i^2+\sum_{i\neq j}m_im_j+\sum_i(m_i\sinh\alpha_i)^2+\sum_{i\neq j}m_im_j\sinh\alpha_i\sinh\alpha_j\\
+    =&\sum_{i\neq j}m_im_j+\sum_i(m_i\cosh\alpha_i)^2+\sum_{i\neq j}m_im_j\sinh\alpha_i\sinh\alpha_j\\
+    &+(\sum_{i\neq j}m_im_j\cosh\alpha_i\cosh\alpha_j-\sum_{i\neq j}m_im_j\cosh\alpha_i\cosh\alpha_j)\\
+    =&\left(\sum_im_i\cosh\alpha_i\right)^2+\sum_{i\neq j}m_im_j-\sum_{i\neq j}m_im_j\cosh(\alpha_i-\alpha_j)\\
+    =&\left(\sum_im_i\cosh\alpha_i\right)^2-\sum_{i\neq j}m_im_j[1-\cosh(\alpha_i-\alpha_j)]
+\end{align}
+
+匹配到能量形式上，即有
+\begin{align}
+\left(\sum_im_i\cosh\alpha_i\right)^2=\left(\sum_im_i\cosh\alpha_c\right)^2+\sum_{i\neq j}m_im_j[1-\cosh(\alpha_i-\alpha_j)]
+\end{align}
+也就是说，
+\begin{align}
+    E_{total}=E_c+E_{cross}
+\end{align}
+
+由于$m_i$是静止能量，也就是一个相对论不变量；而快度在坐标系变换时只需要按照坐标系运动相对关系简单加减，故快度的差是相对论不变量。因此，资用能$E_{cross}$是一个相对论不变量。这就是\textbf{相对论情形下的柯尼希定理}。  
+
+同样可以从快度变换出发证明不变质量的不变性：
+\begin{align}
+    (Mc)^2=&\left(\sum_iE_i\right)^2-c^2\left(\sum_i\mathbf{p}_i\right)^2\\
+    =&c^4\left[\left(\sum_im_i\cosh\alpha_i\right)^2-\left(\sum_im_i\sinh\alpha_i\right)^2\right]\\
+    =&c^4\left[ \sum_im_i^2(\cosh^2\alpha_i-\sinh^2\alpha_i)-\sum_{i\neq j}m_im_j(\cosh\alpha_i\cosh\alpha_j-\sinh\alpha_i\sinh\alpha_j) \right]\\
+    =&c^4\left[\sum_im_i^2-\sum_{i\neq j}\cosh(\alpha_i-\alpha_j)\right]
+\end{align}
+同理可见不变质量是一个相对论不变量。
+
+\section{闵氏空间中的张量场}
+\subsection{电动力学方程的四维表述}
+\subsubsection{四维电流密度和电荷守恒定律}
+用$\rho$表示时空点$x^\mu$处的电荷密度，则\textbf{四维电流密度}定义为
+\begin{align}
+    J_a=\rho\frac{\mathrm{d}x_a}{dt}\,\,(a=1,2,3,4)
+\end{align}
+具体可写出为
+\begin{align}
+    \mathbf{J}=\rho\frac{\mathrm{d}\mathbf{v}}{\mathrm{d}t},\,J_4=ic\rho
+\end{align}
+
+在实闵氏空间中，其逆变分量为
+\begin{align}
+    j^1=J_x,\,j^2=J_y,\,j^3=J_z,\,j^0=c\rho
+\end{align}
+
+进一步地，\textbf{电荷守恒定律}表述为
+\begin{align}
+    \sum_{\mu=0}^3\frac{\partial j_\mu}{\partial x_\mu}=\sum_{\mu=0}^3\frac{\partial j^\mu}{\partial x^\mu}=0
+\end{align}
+
+\subsubsection{能动密度张量}
+能量密度和动量密度是能动四维矢量除以体积元。由于体积元$\mathrm{d}^3V$是一个在(1,2,3)延伸的三维超平面，在四维空间中等价于一个0方向的矢量，故能量密度和动量密度构成一个二阶张量$T^{\mu\nu}$。
+
+\textbf{能量密度}
+
+能量本身就在0方向，对0方向的矢量求微分后仍保持在0方向，故能量密度是$T^{00}$分量。
+
+\textbf{动量密度}
+
+动量$p^i$本身有一个上标i，取密度后再添加一个上标0，此外考虑协变性需要引入光速c。最终得到结果是$cp^{i0}$和$cp^{0i}$在张量中占据第0列和第0行。
+
+\textbf{动量流密度}
+
+张量的纯空间分量$T^{ik}\,\,(i,k\neq0)$等于单位时间内通过与k垂直的单位面积流过的动量i分量，称作动量流密度张量
+
+\textbf{完整的能动密度张量}
+\begin{align}
+    (T^{\mu\nu})=\begin{bmatrix}
+        \varepsilon&cp^{1}&cp^{2}&cp^{3}\\
+        cp^{1}&T^{11} & T^{12}&T^{13} \\
+        cp^{2}&T^{21} & T^{22}&T^{23}\\
+        cp^{3}&T^{31} & T^{32}&T^{33}
+    \end{bmatrix}
+\end{align}
+
+\subsubsection{麦克斯韦方程}
+三维麦克斯韦方程组：
+\begin{align}
+    &\nabla \cdot \mathbf{E}=4\pi\rho\\
+    &\nabla \cdot\mathbf{H}=0\\
+    &\nabla \times \mathbf{E}=-\frac{1}{c}\frac{\partial \mathbf{H}}{\partial t}\\
+    &\nabla\times\mathbf{H}=\frac{1}{c}\frac{\partial \mathbf{E}}{\partial t}+4\pi \mathbf{j}
+\end{align}
+
+\textbf{四维电磁场张量：}
+\begin{align}
+    (F^{\mu\nu})=\begin{bmatrix}
+        0 & -E_x & -E_y & -E_z\\
+        E_x & 0 & -H_z & H_y\\
+        E_y & H_z & 0 & -H_x\\
+        E_z & -H_y & H_x & 0
+    \end{bmatrix}
+\end{align}
+
+对应四维电磁场张量的\textbf{麦克斯韦方程组}是
+\begin{align}
+    &e^{\mu\nu\lambda\rho}\frac{\partial F_{\lambda\rho}}{\partial x^\nu}=0\,\,(\mu=0,1,2,3)\\
+    &\frac{\partial F^{\mu\nu}}{\partial x^\nu}=-\frac{4\pi}{c}j^\mu\,\,(\mu=0,1,2,3)
+\end{align}
+
+\textbf{四维电磁场张量的构造}
+
+之前已经证过，一维赝张量可以写成二维反对称张量形式。故磁场有
+\begin{align}
+    F^{ij}=-\sum_{ij}\varepsilon_{ijk}H_k
+\end{align}
+对三维方程组展开分量，得到
+\begin{align}
+    &\left(\nabla\times\mathbf{H}-\frac{1}{c}\frac{\partial \mathbf{E}}{\partial t}\right)^i=4\pi j^i\\
+    &\nabla \cdot \mathbf{E}=4\pi j^0
+\end{align}
+两式右边分别是一阶张量$j^\mu$的空间和时间分量。第一式左侧的
+\begin{align}
+    \frac{1}{c}\frac{\partial\mathbf{E}}{\partial t}
+\end{align}
+是张量电场部分$F^{mn}$与0方向上的$\partial /\partial t$的缩并。由于$F^{mn}$求微分后转为只有1个指标i的状态，可知微分过程等同于缩并操作，即$F^{mn}$的一个角标必须为0。此外，考虑到磁场张量的反对称性质，电场部分也需要是反对称的。因此有
+\begin{align}
+    E^i=F^{0i}=-F^{i0}
+\end{align}
+
+麦克斯韦方程组等价性的证明见习题。
+
+\subsection{相对论流体力学方程}
+
+\subsubsection{四维粒子流和能动张量}
+在某一时空点$x^\mu=(ct,\,\mathbf{x})$，粒子数密度n和粒子流密度\textbf{j}构成四维粒子流
+\begin{align}
+    (N^\mu)=(\mathbf{j},cn)
+\end{align}
+
+流体的能动张量与电磁场类似，即
+\begin{align}
+    T^{\mu\nu}=\begin{bmatrix}
+        T^{00} & T^{0i}\\
+        T^{i0} & T^{ij}
+    \end{bmatrix}
+\end{align}
+式中，
+\begin{align}
+    T^{00}(x)=c\rho=\varepsilon(\mathbf{x},t)
+\end{align}
+为能量密度，
+\begin{align}
+    cT^{0i}(x)=\mathbf{s}(\mathbf{x},t)
+\end{align}
+为能流密度，
+\begin{align}
+    c^{-1}T^{0i}(x)=c^{-2}\mathbf{s}(\mathbf{x},t)
+\end{align}
+为动量密度，
+\begin{align}
+    T^{ij}
+\end{align}
+为压强张量，即动量流密度张量。
+
+\subsubsection{流体的4-速度}
+\textbf{两种定义}
+
+（1）Eckart定义：基于四维粒子流
+\begin{align}
+    u^\mu(x)=\frac{cN^\mu}{\sqrt{N_\nu N^\nu}}
+\end{align}
+
+（2）Landau-Lifshitz定义：基于能动张量定义
+\begin{align}
+    u^\mu(x)=\frac{cT^{\mu\nu}u_\nu}{\sqrt{u_\rho T^{\sigma\rho}T^{\sigma\tau}u_\tau}}
+\end{align}
+
+\textbf{4-速度张量性质}
+
+按照四维速度的定义，它的平方应等于$c^2$，即：
+\begin{align}
+    g^{\mu\nu}(x)u_\mu(x) u_\nu(x)=c^2
+\end{align}
+
+\textbf{度规张量分解与投影张量}
+
+利用流体4-速度可以将度规张量分解为
+\begin{align}
+    g^{\mu\nu}=c^{-2}u^\mu(x) u^\nu(x)+\Delta^{\mu\nu}(x)
+\end{align}
+
+张量$\Delta^{\mu\nu}$称为投影张量，它作用在任意矢量上得到正交于$u_\mu$的矢量。故满足
+\begin{align}
+    \Delta^{\mu\nu}(x)u_\nu=0
+\end{align}
+
+\chapter{平直空间中的曲线坐标}
+先考虑三维欧氏空间：${i,j,k}$与${\alpha, \beta, \gamma}$均取1到3.
+
+\section{曲线坐标}
+\subsection{定义}
+在三维欧氏空间中的一个连通区域$\Omega$中给定一个直角坐标系$\mathbf{e}_i$，区域$\Omega$中的任一点M在这一坐标系中的分量用大写字母$X_i$表示。设有$X_i$的三个连续可微的单值函数
+\begin{align}
+    x_\alpha = x_\alpha(X_1,X_2, X_3)(\alpha=1,2,3)
+\end{align}
+其反函数
+\begin{align}
+    X_i=X_i(x_1, x_2, x_3)(i=1,2,3)
+\end{align}
+也单值连续可微，则$x_\alpha(\alpha=1,2,3)$可以代替$X_i$作为$\Omega$中的点的坐标，称为曲线坐标。
+
+\subsection{局部标架}
+\subsubsection{坐标线}
+曲线坐标定义式可写为：
+\begin{align}
+    \mathbf{x}=\mathbf{x}(x_1,x_2,x_3)
+\end{align}
+式中，$\mathbf{x}$是空间点的矢径。在此式中，令某一个$x_\alpha$改变，其余两个$x_\beta$保持不变，所得到的点的几何形成\textbf{坐标线}$x_\alpha$。
+如果固定一个$x_\alpha$，改变另外两个$x_\beta$，得到的曲面称为\textbf{坐标面}。
+
+考虑空间中任意一点M，其矢径为$\mathbf{x}$，在这一点与坐标线$x_\alpha$相切并指向$x_\alpha$增加方向的单位矢量用$\mathbf{e}_\alpha$表示。三个$\mathbf{e}_\alpha$形成一组坐标基矢，它们在空间不同点有不同方向。因此称它们组成的坐标系为\textbf{局部标架}。
+
+如果在空间中的每一点M，局部标架的基矢量$\mathbf{e}_\alpha$都相互正交，即
+\begin{align}
+    \mathbf{e}_\alpha(M)\cdot\mathbf{e}_\alpha(M)=\delta_{\alpha\beta}
+\end{align}
+则称这一组曲线坐标为\textbf{正交曲线坐标}。
+
+\subsection{拉梅系数}
+在$x_\alpha$方向的拉梅系数定义为矢径$\mathbf{x}$对坐标$x_\alpha$的偏导数矢量的大小：
+\begin{align}
+    H_\alpha=\bigg|\frac{\partial \mathbf{x}}{\partial x_\alpha}\bigg|=\sqrt{\sum_{i=1}^3\left(\frac{\partial X_i}{\partial x_\alpha}\right)^2}
+\end{align}
+
+总是有
+\begin{align}
+    \frac{\partial \mathbf{x}}{\partial x_\alpha}=H_\alpha\mathbf{e}_\alpha
+\end{align}
+即$\frac{\partial \mathbf{x}}{\partial x_\alpha}$是沿着坐标线$x_\alpha$的切线，指向$x_\alpha$增加方向的矢量。
+
+换言之，$\mathrm{d}\mathbf{x}$在局部标架$\mathbf{e}_\alpha$中表示为
+\begin{align}
+    \mathrm{d}\mathbf{x}=H_\alpha\mathrm{d}x_\alpha+H_\beta \mathrm{d}x_\beta+H_\gamma\mathrm{d}x_\gamma
+\end{align}
+或者，
+\begin{align}
+    (\mathrm{d}\mathbf{x})_\alpha = H_\alpha\mathrm{d}x_\alpha                                                                                                                                                                                                      
+\end{align}
+
+
+\subsubsection{常见曲线坐标系的拉梅系数}
+\textbf{柱坐标}
+
+\begin{align}
+    H_r=1,\,H_\theta=r,\,H_z=1
+\end{align}
+
+\textbf{球坐标}
+
+\begin{align}
+    H_r=1, H_\theta=r, H_\phi=r\sin\theta
+\end{align}
+
+
+\subsection{曲线坐标中的体积元}
+曲线坐标中的体积元
+\begin{align}
+    \mathrm{d}\tau = \prod_{\alpha=1}^3H_\alpha \mathrm{d}x_\alpha
+\end{align}
+
+% 将矢径的微分按照曲线坐标中的局部标架展开，有
+% \begin{align}
+%     \mathrm{d}\mathbf{x}=\sum_{\alpha=1}^3\frac{\partial \mathbf{x}}{\partial x_\alpha}\mathrm{d}x_\alpha=\sum_{\alpha=1}^3\mathbf{e}_\alpha H_\alpha \mathrm{d}x_\alpha
+% \end{align}
+
+\subsection{曲线坐标系中的梯度、散度、旋度}
+\subsubsection{标量场的梯度}
+\begin{align}
+    \nabla\phi = \sum_{\alpha=1}^3\frac{1}{H_\alpha}\frac{\partial \phi}{\partial x_\alpha}\mathbf{e}_\alpha
+\end{align}
+
+\subsubsection{矢量场的散度}
+\begin{align}
+    \nabla\cdot\mathbf{a}=\frac{1}{H_1H_2H_3}\left[\frac{\partial (a_1H_2H_3)}{\partial x_1}+\frac{\partial (a_2H_3H_1)}{\partial x_2}+\frac{\partial (a_3H_1H_2)}{\partial x_3} \right]
+\end{align}
+
+\subsubsection{矢量场的旋度}
+\begin{align}
+    \nabla\times\mathbf{a}=\sum_{\alpha\beta\gamma=1}^3\varepsilon_{\alpha\beta\gamma}\left[\frac{\mathbf{e}_\alpha}{H_\beta H_\gamma}\frac{\partial }{\partial x_\beta}(\alpha_\gamma H_\gamma)\right]
+\end{align}
+
+\subsubsection{拉普拉斯算子}
+\begin{align}
+    \Delta =\frac{1}{H_1H_2H_3}\left[ \frac{\partial }{\partial x_1}\left(\frac{H_2H_3}{H_1}\frac{\partial }{\partial x_1}\right) +\frac{\partial }{\partial x_2}\left(\frac{H_3H_1}{H_2}\frac{\partial }{\partial x_2}\right)+\frac{\partial }{\partial x_3}\left(\frac{H_1H_2}{H_3}\frac{\partial }{\partial x_3}\right) \right]
+\end{align}
+
+\section{曲线坐标中的张量}
+考虑n维欧氏空间，其中任意一点的矢径$\mathbf{x}$在直角坐标系中分量为$X^1,X^2,...X^n$，定义曲线坐标$x^\alpha$：
+\begin{align}
+    &x^\alpha=x^\alpha(X^1,X^2,...X^n)\\
+    &X^i=X_i(x^1,x^2,...x^n)
+\end{align}
+
+取
+\begin{align}
+    \mathbf{x}_\alpha=\frac{\partial \mathbf{x}}{\partial x^\alpha}
+\end{align}
+作为坐标基矢。\footnote{注意，这里的坐标基矢不保证正交性和单位长度性，协变和逆变不等同，讨论时需要区分上下指标。}
+
+\subsection{坐标变换}
+给定两组曲线坐标$x^\alpha$，$x^{\alpha'}$，任意矢量可表示为：
+\begin{align}
+    \mathbf{x}=\mathbf{x}(x^1,x^2,...x^n)=\mathbf{x}(x^{1'},x^{2'},...x^{n'})
+\end{align}
+
+两组曲线坐标间，存在函数关系：
+\begin{align}
+    x^{\alpha'}=x^{\alpha'}(x^1,x^2,...x^n)\\
+    x^{\alpha}=x^{\alpha}(x^{1'},x^{2'},...x^{n'})
+\end{align}
+
+则坐标基矢之间有：
+\begin{align}
+    \mathbf{x}_{\alpha'}=\sum_{\alpha=1}^n\frac{\partial x^\alpha}{\partial x^{\alpha'}}\mathbf{x_{\alpha}}\\
+    \mathbf{x}_{\alpha}=\sum_{\alpha'=1}^n\frac{\partial x^{\alpha'}}{\partial x^{\alpha}}\mathbf{x_{\alpha'}}
+\end{align}
+
+\subsection{张量的定义及运算}
+曲线坐标中张量的定于与仿射坐标中张量定义形式上相同，只要作变换
+\begin{align}
+    A_{i'}^i\rightarrow \frac{\partial x^\alpha}{\partial x^{\alpha'}}\\
+    A_{j}^{j'}\rightarrow \frac{\partial x^{\beta'}}{\partial x^{\beta}}
+\end{align}
+
+
+    \textbf{[曲线坐标中张量的定义]}
+    在曲线坐标$x^\alpha$中，在空间任一点M给出一组数
+    \begin{align}
+        a^{\beta_1\beta_2...\beta_\mu}_{\alpha_1\alpha_2...\alpha_\nu}(M)
+    \end{align}
+    若当曲线坐标变换时，它变为
+    \begin{align}
+        a^{\beta_1'\beta_2'...\beta_\mu'}_{\alpha_1'\alpha_2'...\alpha_\nu'}(M)=&\sum_{\substack{\alpha_1\alpha_2\ldots \alpha_\nu \\ \beta_1\beta_2\ldots \beta_\nu}}
+        \frac{\partial x^{\alpha_1}}{\partial x^{\alpha_1'}}\frac{\partial x^{\alpha_2}}{\partial x^{\alpha_2'}}...\frac{\partial x^{\alpha_\nu}}{\partial x^{\alpha_\nu'}}\frac{\partial x^{\beta_1'}}{\partial x^{\beta_1}}\frac{\partial x^{\beta_2'}}{\partial x^{\beta_2}}...\frac{\partial x^{\beta_\mu'}}{\partial x^{\beta_\mu}}
+        \cdot a^{\beta_1\beta_2...\beta_\mu}_{\alpha_1\alpha_2...\alpha_\nu}(M)
+    \end{align}
+
+
+
+
+
+
+\end{document}
