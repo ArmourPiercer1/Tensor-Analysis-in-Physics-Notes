@@ -1275,6 +1275,7 @@ M称为系统的\textbf{不变质量}，它等于在系统质心系中的总能�
 先考虑三维欧氏空间：${i,j,k}$与${\alpha, \beta, \gamma}$均取1到3.
 
 \section{曲线坐标}
+符号规范：$X_i$表示空间点在直角坐标系中的分量，$x_\alpha$表示空间点在曲线坐标系中的分量。
 \subsection{定义}
 在三维欧氏空间中的一个连通区域$\Omega$中给定一个直角坐标系$\mathbf{e}_i$，区域$\Omega$中的任一点M在这一坐标系中的分量用大写字母$X_i$表示。设有$X_i$的三个连续可微的单值函数
 \begin{align}
@@ -1375,7 +1376,7 @@ M称为系统的\textbf{不变质量}，它等于在系统质心系中的总能�
 考虑n维欧氏空间，其中任意一点的矢径$\mathbf{x}$在直角坐标系中分量为$X^1,X^2,...X^n$，定义曲线坐标$x^\alpha$：
 \begin{align}
     &x^\alpha=x^\alpha(X^1,X^2,...X^n)\\
-    &X^i=X_i(x^1,x^2,...x^n)
+    &X^i=X^i(x^1,x^2,...x^n)
 \end{align}
 
 取
@@ -1459,6 +1460,104 @@ M称为系统的\textbf{不变质量}，它等于在系统质心系中的总能�
         \item 同时对角元为1
     \end{itemize}
 \end{itemize}
+
+\subsection{弧长与体积}
+\textbf{弧长}
+\begin{align}
+    \mathrm{d}^2s=\sum_{\alpha\beta}g_{\alpha\beta}\mathrm{d}x^\alpha \mathrm{d}x^\beta
+\end{align}
+
+\textbf{体积}
+将度规张量的行列式记为$g$，即
+\begin{align}
+    g=\mathrm{det}(g_{\alpha\beta})
+\end{align}
+则有
+\begin{align}
+    g=\left(\mathrm{det}\frac{\partial X^i}{\partial x^\alpha}\right)^2
+\end{align}
+因此，曲线坐标中的体积元为
+\begin{align}
+    \mathrm{d}\tau =\sqrt{|g|}\mathrm{d}x^1\mathrm{d}x^2...\mathrm{d}x^n
+\end{align}
+
+\section{平行移动与联络}
+关注的问题：在曲线坐标中，当平行移动一个矢量时，用曲线坐标表示的矢量分量如何变化？
+
+\subsection{矢量的平行移动}
+关注的空间：n维仿射空间
+
+首先我们要定义\textbf{联络}：考虑空间中一个给定点M时，对于任意两个给定的坐标元$\beta \gamma$，位矢对这两个坐标元的偏导数
+\begin{align}
+    \frac{\partial ^2 \boldsymbol{x}}{\partial x^\beta \partial x^\gamma}
+\end{align}
+是在点M的一个矢量。将这个矢量用M点的局部标架$\mathbf{e}_\alpha$展开，展开系数即为\textbf{联络}
+\begin{align}
+    \frac{\partial ^2 \boldsymbol{x}}{\partial x^\beta \partial x^\gamma}=\sum_{\alpha=1}^n\Gamma_{\beta\gamma}^\alpha \boldsymbol{x}_\alpha
+\end{align}
+联络也被称为\textbf{第二类克里斯托菲尔符号}。
+
+矢量平行移动的条件即为
+\begin{align}
+    \mathrm{d}a^\alpha + \sum_{\beta\gamma} \Gamma_{\beta\gamma}^\alpha a^\beta \mathrm{d}x^\gamma = 0
+\end{align}
+
+其协变分量的变化为
+\begin{align}
+    \mathrm{d}a_\alpha - \sum_{\beta\gamma}\Gamma_{\alpha\gamma}^\beta a_\beta \mathrm{d}x^\gamma = 0
+\end{align}
+
+\subsection{联络的性质与变换规律}
+关注的空间：n维仿射空间
+
+\textbf{联络的简单性质}
+
+\begin{itemize}
+    \item 联络$\Gamma_{\beta\gamma}^\alpha$对指标$\beta\gamma$对称
+    \item 仅在曲线坐标中，联络才不为0
+    \item 联络不是一个三阶张量，因为它在坐标变换时不按照张量规律变。
+\end{itemize}
+
+\textbf{联络的变换规律}
+\begin{align}
+    \Gamma_{\beta'\gamma'}^{\alpha'}=&\sum_{\alpha\beta\gamma}\frac{\partial x^{\alpha'}}{\partial x^\alpha}\frac{\partial x^\beta}{\partial x^{\beta'}}\frac{\partial x^\gamma}{\partial x^{\gamma'}}\Gamma_{\beta\gamma}^\alpha+\sum_{\alpha}\frac{\partial x^{\alpha'}}{\partial x^\alpha}\frac{\partial^2 x^\alpha}{\partial x^{\beta'} \partial x^{\gamma'}}
+\end{align}
+
+
+
+
+\subsection{克里斯托菲尔符号}
+关注的空间：n维欧氏空间
+
+克里斯托菲尔符号的意义：建立联络与度规张量的关系
+
+\begin{itemize}
+    \item 第一类克里斯托菲尔符号：
+    \begin{align}
+        \Gamma_{\lambda,\beta\gamma}=\frac{1}{2}\left(  \frac{\partial g_{\lambda\gamma}}{\partial x^\beta} + \frac{\partial g_{\beta\lambda}}{\partial x^\gamma} - \frac{\partial g_{\gamma\beta}}{\partial x^\lambda} \right)
+    \end{align}
+    \item 第二类克里斯托菲尔符号：
+    \begin{align}
+        \Gamma_{\beta\gamma}^\alpha=&\sum_{\lambda=1}^n g^{\alpha\lambda}\Gamma_{\lambda,\beta\gamma}\\
+        =&\frac{1}{2}\sum_{\lambda}g^{\alpha\lambda}\left(  \frac{\partial g_{\lambda\gamma}}{\partial x^\beta} + \frac{\partial g_{\beta\lambda}}{\partial x^\gamma} - \frac{\partial g_{\gamma\beta}}{\partial x^\lambda} \right)
+    \end{align}
+\end{itemize}
+
+克里斯托菲尔符号的性质：
+\begin{itemize}
+    \item $\Gamma_{\lambda,\beta\gamma}$可以视为将$\Gamma_{\beta\gamma}^\alpha$的第一个上标降低得到的结果。反之，将$\Gamma_{\lambda,\beta\gamma}$的第一个下标提升得到$\Gamma_{\beta\gamma}^\alpha$。
+    \item 在正交曲线坐标中，度规张量对角，可以得到：
+    \begin{itemize}
+        \item \begin{align}
+            \Gamma_{\lambda,\beta\gamma}=\frac{1}{2}\left(  \frac{\partial H_{\gamma}^2}{\partial x^\beta}\delta_{\lambda\gamma}+\frac{\partial H_\beta^2}{\partial x^\gamma}\delta_{\lambda\beta} - \frac{\partial H_\gamma^2}{\partial x^\gamma}\delta_{\beta\gamma} \right)
+        \end{align}
+        \item \begin{align}
+            \Gamma_{\beta\gamma}^\alpha=&\frac{1}{2}\sum_{\lambda}g^{\alpha\lambda}\left(  \frac{\partial H_{\gamma}^2}{\partial x^\beta}\delta_{\lambda\gamma}+\frac{\partial H_\beta^2}{\partial x^\gamma}\delta_{\lambda\beta} - \frac{\partial H_\gamma^2}{\partial x^\gamma}\delta_{\beta\gamma} \right)\\
+            =&\frac{1}{2}\left[ \frac{1}{H_\alpha^2}\left(  \frac{\partial H_{\gamma}^2}{\partial x^\beta}\delta_{\alpha\gamma}+\frac{\partial H_\beta^2}{\partial x^\gamma}\delta_{\alpha\beta} - \frac{\partial H_\gamma^2}{\partial x^\alpha}\delta_{\beta\gamma} \right) \right]
+        \end{align}
+    \end{itemize}
+\end{itemize}
+
 
 
 

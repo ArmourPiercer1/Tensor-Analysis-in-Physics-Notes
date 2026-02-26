@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.10)  21 JAN 2026 20:19
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.10)  26 FEB 2026 18:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -728,7 +728,52 @@ Chapter 3.
 
 [34]
 
-[35] (./笔记——物理学中的张量分析.aux)
+[35]
+
+[36]
+
+[37] (./笔记——物理学中的张量分析.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming lan' in size <7.52812> not available
+(Font)              size <8> substituted on input line 1033.
+
+
+LaTeX Warning: Reference `CME' on page 24 undefined on input line 1067.
+
+
+
+[24]
+
+[25]
+
+[26]
+
+[27]
+
+[28]
+
+[29]
+
+[30
+
+]
+Chapter 3.
+
+
+[31]
+
+[32]
+
+[33]
+
+[34]
+
+[35]
+
+[36]
+
+[37] (./笔记——物理学中的张量分析.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/07/14>
@@ -738,16 +783,28 @@ L3 programming layer <2022/07/14>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.47188pt have occurred.
 
-Package rerunfilecheck Info: File `笔记——物理学中的张量分析.out' has not changed.
-(rerunfilecheck)             Checksum: 5F73960F51CA361CB2ACD401350CBE6C;7250.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `笔记——物理学中的张量分析.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `笔记——物理学中的张量分析.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
+(rerunfilecheck)             After:  DFE037C64680E1AA25F8DE07B6ED7E8E;7849.
  ) 
 Here is how much of TeX's memory you used:
- 16793 strings out of 473832
- 360431 string characters out of 5733158
- 868441 words of memory out of 5000000
- 39564 multiletter control sequences out of 15000+600000
+ 16790 strings out of 473832
+ 361053 string characters out of 5733158
+ 861355 words of memory out of 5000000
+ 39561 multiletter control sequences out of 15000+600000
  578084 words of font info for 147 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,16n,111p,546b,475s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,16n,111p,546b,484s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 笔记——物理学中的张量分析.pdf (35 pages).
+Output written on 笔记——物理学中的张量分析.pdf (37 pages).
